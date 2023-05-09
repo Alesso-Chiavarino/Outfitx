@@ -20,6 +20,7 @@ passport-local
 socket.io
 winston
 cors
+uuid
 
 
 
