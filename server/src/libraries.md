@@ -5,4 +5,22 @@ nodemon
 nodemailer
 twilio
 @faker-js/faker --save-dev
-express-compression
+bcrypt
+commander
+connect-flash
+cookie-parser
+express-handlebars
+handlebars-helpers
+mongoose-paginate-v2
+multer
+passport
+passport-github2
+passport-jwt
+passport-local
+socket.io
+winston
+cors
+
+
+
+TWILIO CODIGO RE SECRETO ===> _h7OkFPTHMnspDsSjkTJMHbatCnxD21Lz6OMEowE
