@@ -1,0 +1,12 @@
+[
+    {
+        "_id": "ajnwdauwd2839ajwndj3jkl",
+        "title": "jamon",
+        "description": "soy una descripción",
+        "code": 1,
+        "price": 100,
+        "stock": 50,
+        "category": "calzado",
+        "status": true
+    }
+]
