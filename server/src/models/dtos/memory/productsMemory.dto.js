@@ -1,6 +1,8 @@
 export class AddProductDTO {
     constructor(id, payload, files){
-        this.id = id
+        if(id !== null) {
+            this.id = id
+        } 
         this.title = payload.title
         this.description = payload.description
         this.code = payload.code
@@ -19,5 +21,11 @@ export class AddProductDTO {
         }else{
             this.thumbnails = []
         }
+    }
+}
+
+export class UpdateProductDTO {
+    constructor(payload){
+        Object.assign(this, payload)
     }
 }

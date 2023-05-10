@@ -43,7 +43,7 @@ export class CartsMemoryDAO {
         }
     }
 
-    async createCart(payload) {
+    async createCart() {
 
         const id = uuid()
 

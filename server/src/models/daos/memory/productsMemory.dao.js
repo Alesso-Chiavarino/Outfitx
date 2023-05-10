@@ -2,6 +2,7 @@ import fs from 'fs/promises'
 import { join } from 'path'
 import { AddProductDTO } from '../../dtos/memory/productsMemory.dto.js'
 import { v4 as uuid } from 'uuid'
+import { validateProduct } from '../../../utils/validator.js'
 
 export class ProductsMemoryDAO {
 
@@ -51,16 +52,8 @@ export class ProductsMemoryDAO {
     }
 
     async createProduct(payload) {
-        const { title, description, code, stock, price, category } = payload
 
-        switch (true) {
-            case !title: throw new Error('title is required')
-            case !description: throw new Error('description is required')
-            case !code: throw new Error('code is required')
-            case !stock: throw new Error('stock is required')
-            case !price: throw new Error('price is required')
-            case !category: throw new Error('category is required')
-        }
+        validateProduct(payload)
 
         const id = uuid()
 
@@ -91,16 +84,7 @@ export class ProductsMemoryDAO {
 
     async updateProductById(id, payload) {
 
-        const { title, description, code, stock, price, category } = payload
-
-        switch (true) {
-            case !title: throw new Error('title is required')
-            case !description: throw new Error('description is required')
-            case !code: throw new Error('code is required')
-            case !stock: throw new Error('stock is required')
-            case !price: throw new Error('price is required')
-            case !category: throw new Error('category is required')
-        }
+        validateProduct(payload)
 
         try {
             const products = await this.getProducts()
