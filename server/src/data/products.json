@@ -1,12 +1,45 @@
 [
-    {
-        "_id": "ajnwdauwd2839ajwndj3jkl",
-        "title": "jamon",
-        "description": "soy una descripción",
-        "code": 1,
-        "price": 100,
-        "stock": 50,
-        "category": "calzado",
-        "status": true
-    }
+	{
+		"_id": "460ae3ff-1662-4b8e-87ab-60b3441efbd1",
+		"title": "tostado",
+		"description": "soy una tostado",
+		"code": 1,
+		"price": 200,
+		"stock": 100,
+		"category": "comida",
+		"status": true,
+		"thumbnails": []
+	},
+	{
+		"_id": "0937664c-37c5-441b-861b-8ba326c63439",
+		"title": "jamon cocido",
+		"description": "soy una jamon",
+		"code": 2,
+		"price": 100,
+		"stock": 3,
+		"category": "comida",
+		"status": true,
+		"thumbnails": []
+	},
+	{
+		"_id": "418b3316-40c0-4b7f-b9b7-ba411011fc4b",
+		"title": "tomate",
+		"description": "soy una tomate",
+		"price": 3100,
+		"stock": 6,
+		"category": "comida",
+		"status": true,
+		"thumbnails": []
+	},
+	{
+		"_id": "6d715861-311e-40ed-a731-3be7e6a1beb1",
+		"title": "tomate",
+		"description": "soy una tomate",
+		"code": 4,
+		"price": 3100,
+		"stock": 6,
+		"category": "comida",
+		"status": true,
+		"thumbnails": []
+	}
 ]

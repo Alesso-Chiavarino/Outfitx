@@ -62,7 +62,7 @@ export class ProductsService {
 
         validateProduct(payload)
 
-        const productPayloadDto = new UpdateProductDTO(product)
+        const productPayloadDto = new UpdateProductDTO(payload)
 
         const updatedProduct = await productsDao.updateProductById(id ,productPayloadDto)
 

@@ -1,7 +1,6 @@
 import express from 'express'
 import ENV from './config/env.config.js'
 import cors from 'cors'
-import errorHandler from './middlewares/error.middleware.js'
 import { Server } from 'socket.io'
 import { logError, logSuccess } from './utils/console.utils.js'
 import apiRouter from './routers/app.routes.js'
@@ -12,7 +11,6 @@ const { PORT } = ENV
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(errorHandler)
 app.use(cors({
     origin: 'http://localhost:3000',
 }))

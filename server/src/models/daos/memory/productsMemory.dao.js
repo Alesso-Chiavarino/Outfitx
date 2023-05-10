@@ -9,113 +9,81 @@ export class ProductsMemoryDAO {
     }
 
     async getProducts() {
+        const products = await fs.readFile('./src/data/products.json', 'utf-8')
 
-        try {
-            const products = await fs.readFile('./src/data/products.json', 'utf-8')
-
-            if (!products || !products.length) {
-                return []
-            }
-
-            return JSON.parse(products)
-        } catch (err) {
-            throw new Error(err.message)
+        if (!products || !products.length) {
+            return []
         }
+
+        return JSON.parse(products)
 
     }
 
     async getProductById(id) {
-        try {
+        const products = await this.getProducts()
 
-            if (!id) {
-                throw new Error('id is required')
-            }
+        const filteredProduct = products.find(prod => prod._id === id)
 
-            const products = await this.getProducts()
-
-            const filteredProduct = products.find(prod => prod._id === id)
-
-            if (!filteredProduct) {
-                throw new Error('product not found')
-            }
-
-            return filteredProduct
-
-        } catch (err) {
-            throw new Error(err.message)
-        }
+        return filteredProduct
     }
 
     async createProduct(payload) {
 
-        const _id = uuid()
+        const _id = { _id: uuid() }
 
         Object.assign(payload, _id)
 
-        try {
+        const products = await this.getProducts()
+        const duplicatedProduct = products.find(prod => prod.code === payload.code)
 
-            const products = await this.getProducts()
-            const duplicatedProduct = products.find(prod => prod.code === code)
-
-            if (duplicatedProduct) {
-                throw new Error('product already exists')
-            }
-
-            products.push(payload)
-
-            fs.writeFile(this.path, JSON.stringify(products, null, '\t'))
-
-            return productPayloadDto
-
-
-        } catch (err) {
-            throw new Error(err.message)
+        if (duplicatedProduct) {
+            throw new Error('product already exists')
         }
 
+        products.push(payload)
+
+        fs.writeFile(this.path, JSON.stringify(products, null, '\t'))
+
+        console.log(payload)
+
+        return payload
 
     }
 
     async updateProductById(id, payload) {
 
-        try {
-            const products = await this.getProducts()
-            const filteredProduct = await this.getProductById(id)
+        const products = await this.getProducts()
+        const filteredProduct = await this.getProductById(id)
 
-            if (!filteredProduct) {
-                throw new Error('product not found')
-            }
-
-            const updatedProducts = products.map(prod => {
-                if (prod._id === id) {
-                    return payload
-                }
-                return prod
-            })
-
-            fs.writeFile(this.path, JSON.stringify(updatedProducts, null, '\t'))
-
-            return payload
-        } catch (err) {
-            throw new Error(err.message)
+        const updatedProduct = {
+            ...filteredProduct,
+            ...payload
         }
+
+        const updatedProducts = products.map(prod => {
+            if (prod._id === id) {
+                return updatedProduct
+            }
+            return prod
+        })
+
+        fs.writeFile(this.path, JSON.stringify(updatedProducts, null, '\t'))
+
+        return updatedProduct
     }
 
     async deleteProductById(id) {
-        try {
-            const products = await this.getProducts()
-            const filteredProduct = await this.getProductById(id)
+        const products = await this.getProducts()
+        const filteredProduct = await this.getProductById(id)
 
-            if (!filteredProduct) {
-                throw new Error('product not found')
-            }
-
-            const updatedProducts = products.filter(prod => prod._id !== id)
-
-            fs.writeFile(this.path, JSON.stringify(updatedProducts, null, '\t'))
-
-            return filteredProduct
-        } catch (err) {
-            throw new Error(err.message)
+        if (!filteredProduct) {
+            throw new Error('product not found')
         }
+
+        const updatedProducts = products.filter(prod => prod._id !== id)
+
+        fs.writeFile(this.path, JSON.stringify(updatedProducts, null, '\t'))
+
+        return filteredProduct
     }
 }
