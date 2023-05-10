@@ -4,6 +4,7 @@ import cors from 'cors'
 import errorHandler from './middlewares/error.middleware.js'
 import { Server } from 'socket.io'
 import { logError, logSuccess } from './utils/console.utils.js'
+import apiRouter from './routers/app.routes.js'
 
 const app = express()
 
@@ -15,6 +16,7 @@ app.use(errorHandler)
 app.use(cors({
     origin: 'http://localhost:3000',
 }))
+app.use('/api', apiRouter)
 
 const server = app.listen(PORT, () => logSuccess(`server is running on port ${PORT}`))
 

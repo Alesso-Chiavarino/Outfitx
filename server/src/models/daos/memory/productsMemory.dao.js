@@ -1,8 +1,6 @@
 import fs from 'fs/promises'
 import { join } from 'path'
-import { AddProductDTO } from '../../dtos/memory/productsMemory.dto.js'
 import { v4 as uuid } from 'uuid'
-import { validateProduct } from '../../../utils/validator.js'
 
 export class ProductsMemoryDAO {
 
@@ -13,16 +11,13 @@ export class ProductsMemoryDAO {
     async getProducts() {
 
         try {
-            if (!fs.existsSync(this.path)) {
+            const products = await fs.readFile('./src/data/products.json', 'utf-8')
 
-                const products = await fs.readFile('./src/data/products.json', 'utf-8')
-
-                if (!products || !products.length) {
-                    return []
-                }
-
-                return JSON.parse(products)
+            if (!products || !products.length) {
+                return []
             }
+
+            return JSON.parse(products)
         } catch (err) {
             throw new Error(err.message)
         }

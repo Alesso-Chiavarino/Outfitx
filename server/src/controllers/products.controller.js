@@ -19,6 +19,61 @@ class ProductsController {
         }
     }
 
+    static async getProduct(req, res, next) {
+        const { id } = req.params
+
+        try {
+            const product = await productsService.getProductById(id)
+            const response = successResponse(product)
+            res.status(HTTP_STATUS.OK).json(response)
+
+        } catch (err) {
+            next(err)
+        }
+    }
+
+    static async createProduct(req, res, next) {
+
+        const payload = req.body
+        const { files } = req
+
+        try {
+            const newProduct = await productsService.createProduct(payload, files)
+            const response = successResponse(newProduct)
+            res.status(HTTP_STATUS.CREATED).json(response)
+
+        } catch (err) {
+            next(err)
+        }
+    }
+
+    static async updateProduct(req, res, next) {
+        const { id } = req.params
+        const payload = req.body
+
+        try {
+            const updatedProduct = await productsService.updateProductById(id, payload)
+            const response = successResponse(updatedProduct)
+            res.status(HTTP_STATUS.OK).json(response)
+
+        } catch (err) {
+            next(err)
+        }
+    }
+
+    static async deleteProduct(req, res, next) {
+        const { id } = req.params
+
+        try {
+            const productToDelete = await productsService.deleteProductById(id)
+            const response = successResponse(productToDelete)
+            res.status(HTTP_STATUS.OK).json(response)
+
+        } catch (err) {
+            next(err)
+        }
+    }
+
 
 }
 

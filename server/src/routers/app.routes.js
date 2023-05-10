@@ -4,7 +4,11 @@ import productsRouter from './products/products.routes.js'
 
 const router = Router();
 
-router.use('carts', cartsRouter)
-router.use('products', productsRouter)
+router.get('/', (req, res) => {
+    res.send('welcome to Outfitx RESTAPI')
+})
+
+router.use('/carts', cartsRouter)
+router.use('/products', productsRouter)
 
 export default router
