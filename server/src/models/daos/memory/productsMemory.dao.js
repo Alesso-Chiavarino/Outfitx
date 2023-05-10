@@ -24,7 +24,7 @@ export class ProductsMemoryDAO {
                 return JSON.parse(products)
             }
         } catch (err) {
-            throw new Error('Error: ', err)
+            throw new Error(err.message)
         }
 
     }
@@ -47,17 +47,15 @@ export class ProductsMemoryDAO {
             return filteredProduct
 
         } catch (err) {
-            throw new Error('Error: ', err)
+            throw new Error(err.message)
         }
     }
 
     async createProduct(payload) {
 
-        validateProduct(payload)
+        const _id = uuid()
 
-        const id = uuid()
-
-        const productPayloadDto = new AddProductDTO(id, payload)
+        Object.assign(payload, _id)
 
         try {
 
@@ -68,7 +66,7 @@ export class ProductsMemoryDAO {
                 throw new Error('product already exists')
             }
 
-            products.push(productPayloadDto)
+            products.push(payload)
 
             fs.writeFile(this.path, JSON.stringify(products, null, '\t'))
 
@@ -76,15 +74,13 @@ export class ProductsMemoryDAO {
 
 
         } catch (err) {
-            throw new Error('Error: ', err)
+            throw new Error(err.message)
         }
 
 
     }
 
     async updateProductById(id, payload) {
-
-        validateProduct(payload)
 
         try {
             const products = await this.getProducts()
@@ -94,20 +90,18 @@ export class ProductsMemoryDAO {
                 throw new Error('product not found')
             }
 
-            const productPayloadDto = new AddProductDTO(payload)
-
             const updatedProducts = products.map(prod => {
                 if (prod._id === id) {
-                    return productPayloadDto
+                    return payload
                 }
                 return prod
             })
 
             fs.writeFile(this.path, JSON.stringify(updatedProducts, null, '\t'))
 
-            return productPayloadDto
+            return payload
         } catch (err) {
-            throw new Error('Error: ', err)
+            throw new Error(err.message)
         }
     }
 
@@ -126,7 +120,7 @@ export class ProductsMemoryDAO {
 
             return filteredProduct
         } catch (err) {
-            throw new Error('Error: ', err)
+            throw new Error(err.message)
         }
     }
 }

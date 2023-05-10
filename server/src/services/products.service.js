@@ -40,7 +40,7 @@ export class ProductsService {
 
         validateProduct(payload)
 
-        const productPayloadDto = new AddProductDTO(null, payload, files)
+        const productPayloadDto = new AddProductDTO(payload, files)
 
         const newProduct = await productsDao.createProduct(productPayloadDto)
 

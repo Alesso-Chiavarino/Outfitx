@@ -1,8 +1,5 @@
 export class AddProductDTO {
-    constructor(id, payload, files){
-        if(id !== null) {
-            this.id = id
-        } 
+    constructor(payload, files){
         this.title = payload.title
         this.description = payload.description
         this.code = payload.code
