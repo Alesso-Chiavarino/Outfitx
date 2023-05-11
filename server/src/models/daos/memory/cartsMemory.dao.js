@@ -1,116 +1,114 @@
 import fs from 'fs/promises'
 import { join } from 'path'
 import { v4 as uuid } from 'uuid'
-import { addCartsMemoryDTO } from '../../dtos/memory/cartsMemory.dto.js'
 
 export class CartsMemoryDAO {
-    constructor(filename) {
+    constructor(filename = 'carts.json') {
         this.file = join(process.cwd(), `src/data/${filename}`)
     }
 
     async getCarts() {
-        try {
-            const carts = await fs.readFile(this.file, 'utf-8')
 
-            if (!carts || !carts.length) {
-                return []
-            }
+        console.log(this.file)
+        const carts = await fs.readFile(this.file, 'utf-8')
 
-            return JSON.parse(carts)
-        } catch (err) {
-            throw new Error('Error: ', err)
+        console.log(carts)
+
+        if (!carts || !carts.length) {
+            return []
         }
+
+        return JSON.parse(carts)
     }
 
     async getCartById(id) {
 
-        if (!id) {
-            throw new Error('id is required')
+        const carts = await this.getCarts()
+        const cart = carts.find(cart => cart._id === id)
+
+        if (!cart) {
+            throw new Error('cart not found')
         }
 
-        try {
-            const carts = await this.getCarts()
-            const cart = carts.find(cart => cart._id === id)
-
-            if (!cart) {
-                throw new Error('cart not found')
-            }
-
-            return cart
-
-        } catch (err) {
-            throw new Error('Error: ', err)
-        }
+        return cart
     }
 
     async createCart() {
 
-        const id = uuid()
+        const _id = uuid()
+        const carts = await this.getCarts()
 
-        try {
-            const carts = await this.getCarts()
-
-            const cartPayload = new addCartsMemoryDTO(id)
-
-            carts.push(cartPayload)
-
-            await fs.writeFile(this.file, JSON.stringify(carts, null, '\t'))
-
-            return cartPayload
-
-        } catch (err) {
-            throw new Error('Error: ', err)
+        const cart = {
+            _id,
+            products: []
         }
+
+        carts.push(cart)
+
+        await fs.writeFile(this.file, JSON.stringify(carts, null, '\t'))
+
+        return cart
     }
 
-    async addToCart(id, product) {
-        try {
+    async addToCart(id, productId) {
 
-            if (!id) {
-                throw new Error('id is required')
-            }
+        const carts = await this.getCarts()
 
-            if (!product) {
-                throw new Error('product is required')
-            }
+        const cart = await this.getCartById(id)
 
-            const carts = await this.getCarts()
+        const existingProduct = cart.products.find(prod => prod._id === productId)
+        const cartIndex = carts.findIndex(cart => cart._id === id)
+        const productIndex = cart.products.findIndex(prod => prod._id === productId)
 
-            const cart = await this.getCartById(id)
-
-            if (!cart) {
-                throw new Error('cart not found')
-            }
-
-            const existingProduct = cart.products.find(prod => prod._id === product._id)
-            const cartIndex = carts.findIndex(cart => cart._id === id)
-            const productIndex = cart.products.findIndex(prod => prod._id === product._id)
-
-            if (existingProduct) {
-                existingProduct.quantity += product.quantity
-
-                cart.products[productIndex] = existingProduct
-
-                carts[cartIndex] = cart
-
-            } else {
-                const newProduct = {
-                    ...product,
-                    _id: uuid()
-                }
-
-                cart.products.push(newProduct)
-            }
-
-            carts[cartIndex] = cart
-
-            await fs.writeFile(this.file, JSON.stringify(carts, null, '\t'))
-
-            return cart
-
-
-        } catch (err) {
-            throw new Error('Error: ', err)
+        if (existingProduct) {
+            cart.products[productIndex].quantity += 1
+        } else {
+            cart.products.push({ _id: productId, quantity: 1 })
         }
+
+        carts[cartIndex] = cart
+
+        await fs.writeFile(this.file, JSON.stringify(carts, null, '\t'))
+
+        return cart
+    }
+
+    async removeFromCart(id, productId) {
+
+        const cart = await this.getCartById(id)
+
+        const updatedCart = cart.products.filter(prod => prod._id !== productId)
+
+        const carts = await this.getCarts()
+
+        const updatedCarts = carts.map(cart => {
+            if (cart._id === id) {
+                cart.products = updatedCart
+            }
+            return cart
+        })
+
+        await fs.writeFile(this.file, JSON.stringify(updatedCarts, null, '\t'))
+
+        return updatedCart
+    }
+
+    async clearCart(id) {
+        const cleanedCart = {
+            id,
+            products: []
+        }
+
+        const carts = await this.getCarts()
+
+        const updatedCarts = carts.map(cart => {
+            if (cart._id === id) {
+                cart.products = cleanedCart.products
+            }
+            return cart
+        })
+
+        await fs.writeFile(this.file, JSON.stringify(updatedCarts, null, '\t'))
+        return cleanedCart
     }
 }

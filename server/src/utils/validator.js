@@ -15,6 +15,9 @@ export const validateProduct = (payload) => {
     if (!stock) {
         throw new HttpError('stock is required', HTTP_STATUS.BAD_REQUEST);
     }
+    if (stock <= 0) {
+        throw new HttpError('stock must be greater than 0', HTTP_STATUS.BAD_REQUEST);
+    }
     if (!price) {
         throw new HttpError('price is required', HTTP_STATUS.BAD_REQUEST);
     }

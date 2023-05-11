@@ -9,7 +9,7 @@ const { productsDao } = getDaos()
 export class ProductsService {
 
     async getProducts(filter = {}) {
-        const products = await productsDao.getProducts()
+        const products = await productsDao.getProducts(filter)
         const productsPayloadDto = []
 
         products.map(prod => {

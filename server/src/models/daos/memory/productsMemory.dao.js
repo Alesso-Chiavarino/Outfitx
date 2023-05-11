@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid'
 
 export class ProductsMemoryDAO {
 
-    constructor(filename) {
+    constructor(filename = 'products.json') {
         this.path = join(process.cwd(), `src/data/${filename}`)
     }
 
