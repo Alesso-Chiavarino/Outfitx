@@ -1,5 +1,6 @@
 import ENV from '../../config/env.config.js'
 import { LogColors } from '../../utils/console.utils.js'
+import { MongoManager } from '../db/mongo/mongo.manager.js'
 
 let cartsDao, productsDao
 const { DATA_SOURCE } = ENV
@@ -17,7 +18,9 @@ switch (DATA_SOURCE) {
     }
 
     case "MONGO": {
-        // MongoManager.connect()
+        MongoManager.connect()
+        const { ProductsMongoDAO } = await import('./mongo/productsMongo.dao.js')
+        productsDao = new ProductsMongoDAO()
         // const CartMongoDao = require('./mongo/CartMongoDao')
         // const { ProductMongoDao } = require('./mongo/ProductMongoDao')
         // const ChatMongoDao = require('./mongo/ChatMongoDao')
