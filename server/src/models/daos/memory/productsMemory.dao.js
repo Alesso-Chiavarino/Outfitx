@@ -44,8 +44,6 @@ export class ProductsMemoryDAO {
 
         fs.writeFile(this.path, JSON.stringify(products, null, '\t'))
 
-        console.log(payload)
-
         return payload
 
     }

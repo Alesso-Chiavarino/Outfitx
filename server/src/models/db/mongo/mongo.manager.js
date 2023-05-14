@@ -7,13 +7,7 @@ export class MongoManager {
 
     constructor() {
         mongoose.set('strictQuery', false)
-        mongoose.connect(DB_CONFIG.mongo.local.uri, err => {
-            if (err) {
-                logError(`Db connenction failed ${err}`)
-                throw err
-            }
-            logSuccess(`Db connenction success`)
-        })
+        mongoose.connect(DB_CONFIG.mongo.local.uri)
     }
 
     static connect() {

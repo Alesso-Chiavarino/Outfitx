@@ -9,10 +9,7 @@ export class CartsMemoryDAO {
 
     async getCarts() {
 
-        console.log(this.file)
         const carts = await fs.readFile(this.file, 'utf-8')
-
-        console.log(carts)
 
         if (!carts || !carts.length) {
             return []

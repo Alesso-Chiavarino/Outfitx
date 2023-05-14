@@ -20,17 +20,9 @@ switch (DATA_SOURCE) {
     case "MONGO": {
         MongoManager.connect()
         const { ProductsMongoDAO } = await import('./mongo/productsMongo.dao.js')
+        const { CartsMongoDAO } = await import('./mongo/cartsMongo.dao.js')
         productsDao = new ProductsMongoDAO()
-        // const CartMongoDao = require('./mongo/CartMongoDao')
-        // const { ProductMongoDao } = require('./mongo/ProductMongoDao')
-        // const ChatMongoDao = require('./mongo/ChatMongoDao')
-        // const UserMongoDao = require('./mongo/UserMongoDao')
-        // const { TicketMongoDao } = require("./mongo/TicketMongoDao.js");
-        // cartsDao = new CartMongoDao()
-        // productsDao = new ProductMongoDao()
-        // chatsDao = new ChatMongoDao()
-        // usersDao = new UserMongoDao()
-        // ticketsDao = new TicketMongoDao()
+        cartsDao = new CartsMongoDAO()
         break;
     }
 

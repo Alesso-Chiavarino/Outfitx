@@ -1,8 +1,8 @@
 import { getDaos } from "../models/daos/factory.js";
-import { GetProductDTO } from "../models/dtos/mongo/productsMongo.dto.js";
+import { GetProductDTO } from "../models/dtos/products.dto.js";
 import { HttpError, HTTP_STATUS } from "../utils/api.utils.js";
 import { validateProduct } from "../utils/validator.js";
-import { AddProductDTO, UpdateProductDTO } from "../models/dtos/memory/productsMemory.dto.js";
+import { AddProductDTO, UpdateProductDTO } from "../models/dtos/products.dto.js";
 
 const { productsDao } = getDaos()
 
@@ -12,9 +12,13 @@ export class ProductsService {
         const products = await productsDao.getProducts(filter)
         const productsPayloadDto = []
 
-        products.map(prod => {
-            productsPayloadDto.push(new GetProductDTO(prod))
-        })
+        if(!products.docs.length) {
+            throw new HttpError('No products found', HTTP_STATUS.NOT_FOUND)
+        }
+
+        products.docs.forEach(product => {
+            productsPayloadDto.push(new GetProductDTO(product))
+        });
 
         return productsPayloadDto
     }

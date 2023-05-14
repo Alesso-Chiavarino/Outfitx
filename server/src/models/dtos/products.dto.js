@@ -12,6 +12,7 @@ export class AddProductDTO {
         this.stock = stock
         this.category = category
         this.status = stock > 0 ? true : false
+        console.log(files)
         if (files) {
             const paths = files.map(file => {
                 return {
@@ -23,6 +24,20 @@ export class AddProductDTO {
         } else {
             this.thumbnails = []
         }
+    }
+}
+
+export class GetProductDTO{
+    constructor(payload){
+        this.id = payload._id
+        this.title = payload.title
+        this.description = payload.description
+        this.code = payload.code
+        this.price = payload.price
+        this.stock = payload.stock
+        this.category = payload.category
+        this.status = payload.status
+        this.thumbnails = payload.thumbnails
     }
 }
 

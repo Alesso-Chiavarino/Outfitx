@@ -21,18 +21,18 @@ const schema = new Schema({
     }
 })
 
-cartSchema.pre('findById', () => {
+schema.pre('findById', () => {
     this.populate('product')
 })
 
-cartSchema.pre('find', () => {
+schema.pre('find', () => {
     this.populate('products.product')
 })
 
-cartSchema.pre('findOne', () => {
+schema.pre('findOne', () => {
     this.populate('products.product')
 })
 
-const cartModel = new model(collection, schema)
+const cartModel = model(collection, schema)
 
 export default cartModel
