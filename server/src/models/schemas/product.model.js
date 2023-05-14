@@ -33,7 +33,7 @@ const schema = new Schema({
         type: Boolean,
         default: true,
     },
-    thumbnail: {
+    thumbnails: {
         type: [],
         default: []
     }

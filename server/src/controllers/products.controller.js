@@ -35,7 +35,7 @@ class ProductsController {
     static async createProduct(req, res, next) {
 
         const payload = req.body
-        const { files } = req
+        const { files } = req 
 
         try {
             const newProduct = await productsService.createProduct(payload, files)

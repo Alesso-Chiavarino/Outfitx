@@ -6,7 +6,7 @@ const router = Router()
 
 router.get('/', ProductsController.getProducts)
 router.get('/:id', ProductsController.getProduct)
-router.post('/', uploader.array('files'), ProductsController.createProduct)
+router.post('/', uploader.array('thumbnails'), ProductsController.createProduct)
 router.put('/:id', ProductsController.updateProduct)
 router.delete('/:id', ProductsController.deleteProduct)
 
