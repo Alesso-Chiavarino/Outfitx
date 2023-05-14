@@ -4,6 +4,7 @@ import cors from 'cors'
 import { Server } from 'socket.io'
 import { logError, logSuccess } from './utils/console.utils.js'
 import apiRouter from './routers/app.routes.js'
+import { addLogger } from './middlewares/logger.middleware.js'
 
 const app = express()
 
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cors({
     origin: 'http://localhost:3000',
 }))
+app.use(addLogger)
 app.use('/api', apiRouter)
 
 const server_url = `http://localhost:${PORT}`

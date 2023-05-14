@@ -9,6 +9,14 @@ class ProductsController {
 
         const filter = req.query
 
+        //loger test
+        req.logger.fatal('Prueba fatal')
+        req.logger.error('Prueba error')
+        req.logger.warning('Prueba warning')
+        req.logger.info('Prueba info')
+        req.logger.http('Prueba http')
+        req.logger.debug('Prueba debug')
+
         try {
             const products = await productsService.getProducts(filter)
             const response = successResponse(products)
@@ -35,7 +43,7 @@ class ProductsController {
     static async createProduct(req, res, next) {
 
         const payload = req.body
-        const { files } = req 
+        const { files } = req
 
         try {
             const newProduct = await productsService.createProduct(payload, files)

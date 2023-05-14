@@ -22,6 +22,10 @@ winston
 cors
 uuid
 
+devDependencies {
+    artillery
+}
 
+<!-- artillery quick --count 40 --num 50 "http://localhost:8080/api/products" -o stadistics.json -->
 
 TWILIO CODIGO RE SECRETO ===> _h7OkFPTHMnspDsSjkTJMHbatCnxD21Lz6OMEowE
