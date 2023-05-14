@@ -12,7 +12,6 @@ export class AddProductDTO {
         this.stock = stock
         this.category = category
         this.status = stock > 0 ? true : false
-        console.log(files)
         if (files) {
             const paths = files.map(file => {
                 return {

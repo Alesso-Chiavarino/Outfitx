@@ -12,12 +12,12 @@ export class CartsMongoDAO {
     }
 
     async createCart() {
-        const cart = await cartModel.create()
+        const cart = await cartModel.create({})
         return cart
     }
 
     async addToCart(id, pid, amount) {
-        const updatedCart = await cartModel.updateOne(id, {
+        const updatedCart = await cartModel.updateOne({ _id: id }, {
             $push: {
                 products: {
                     _id: pid,

@@ -26,6 +26,9 @@ export class CartsService {
 
     async createCart() {
         const cart = await cartsDao.createCart()
+        if(!cart) {
+            throw new HttpError('Cart not created', HTTP_STATUS.INTERNAL_SERVER_ERROR)
+        }
         return cart
     }
 
@@ -34,7 +37,7 @@ export class CartsService {
         return deletedCart
     }
 
-    async addToCart(id, productId) {
+    async addToCart(id, productId, amount) {
         if (!id) {
             throw new HttpError('Missing id', HTTP_STATUS.BAD_REQUEST)
         }
@@ -51,7 +54,7 @@ export class CartsService {
             throw new HttpError('Product not found', HTTP_STATUS.NOT_FOUND)
         }
 
-        const updatedCart = await cartsDao.addToCart(id, productId)
+        const updatedCart = await cartsDao.addToCart(id, productId, amount)
 
         return updatedCart
     }

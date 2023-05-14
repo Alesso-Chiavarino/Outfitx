@@ -55,9 +55,10 @@ export class CartsController {
 
     static async addToCart(req, res, next) {
         const { id, pid } = req.params
+        const amount = +req.body?.amount || 1
 
         try {
-            const updatedCart = await cartsService.addToCart(id, pid)
+            const updatedCart = await cartsService.addToCart(id, pid, amount)
             const response = successResponse(updatedCart)
             res.status(HTTP_STATUS.OK).json(response)
 

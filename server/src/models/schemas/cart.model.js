@@ -21,15 +21,15 @@ const schema = new Schema({
     }
 })
 
-schema.pre('findById', () => {
+schema.pre('findById', function(){
     this.populate('product')
 })
 
-schema.pre('find', () => {
+schema.pre('find', function(){
     this.populate('products.product')
 })
 
-schema.pre('findOne', () => {
+schema.pre('findOne', function(){
     this.populate('products.product')
 })
 
