@@ -1,17 +1,24 @@
 import { faker } from '@faker-js/faker'
 
 export const generateProduct = () => {
+
+    const thumbnails = []
+    for (let i = 0; i < faker.number.int({ min: 1, max: 7 }); i++) {
+        thumbnails.push({
+            path: faker.image.url(),
+            originalName: faker.system.fileName()
+        })
+    }
+
     return {
-        id: faker.database.mongodbObjectId(),
+        _id: faker.database.mongodbObjectId(),
         title: faker.commerce.productName(),
         description: faker.commerce.productDescription(),
-        department: faker.commerce.department(),
-        stock: faker.datatype.number(500),
+        code: faker.number.int({ min: 1, max: 1000 }),
+        category: faker.commerce.department(),
+        stock: faker.number.int({ min: 1, max: 1000 }),
         price: +faker.commerce.price(),
-        image: faker.image.image()
+        status: faker.datatype.boolean(),
+        thumbnails
     }
 }
-
-const product = generateProduct()
-
-console.log(product)
