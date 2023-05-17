@@ -32,6 +32,7 @@ export class CartsController {
         try {
             const cart = await cartsService.createCart()
             const response = successResponse(cart)
+            req.logger.info('Cart created successfully')
             res.status(HTTP_STATUS.CREATED).json(response)
 
         } catch (err) {
@@ -46,6 +47,7 @@ export class CartsController {
         try {
             const emptyCart = await cartsService.clearCart(id)
             const response = successResponse(emptyCart)
+            req.logger.info('Cart cleared successfully')
             res.status(HTTP_STATUS.OK).json(response)
 
         } catch (err) {
@@ -60,6 +62,7 @@ export class CartsController {
         try {
             const updatedCart = await cartsService.addToCart(id, pid, amount)
             const response = successResponse(updatedCart)
+            req.logger.info('Product added to cart successfully')
             res.status(HTTP_STATUS.OK).json(response)
 
         } catch (err) {
@@ -73,6 +76,7 @@ export class CartsController {
         try {
             const updatedCart = await cartsService.removeFromCart(id, pid)
             const response = successResponse(updatedCart)
+            req.logger.info('Product removed from cart successfully')
             res.status(HTTP_STATUS.OK).json(response)
 
         } catch (err) {

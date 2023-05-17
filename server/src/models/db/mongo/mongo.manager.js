@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import { DB_CONFIG } from '../../../config/db.config.js';
-import { logError, logSuccess } from '../../../utils/console.utils.js';
+import { logError, LogColors } from '../../../utils/console.utils.js';
 
 export class MongoManager {
     static #instance = false;
@@ -8,6 +8,13 @@ export class MongoManager {
     constructor() {
         mongoose.set('strictQuery', false)
         mongoose.connect(DB_CONFIG.mongo.local.uri)
+            .then(res => {
+                LogColors.logMagenta('MongoDB connection established')
+            })
+            .catch(err => {
+                logError('MongoDB connection failed')
+                throw err
+            })
     }
 
     static connect() {

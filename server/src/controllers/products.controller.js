@@ -9,14 +9,6 @@ class ProductsController {
 
         const filter = req.query
 
-        //loger test
-        req.logger.fatal('Prueba fatal')
-        req.logger.error('Prueba error')
-        req.logger.warning('Prueba warning')
-        req.logger.info('Prueba info')
-        req.logger.http('Prueba http')
-        req.logger.debug('Prueba debug')
-
         try {
             const products = await productsService.getProducts(filter)
             const response = successResponse(products)
@@ -48,6 +40,7 @@ class ProductsController {
         try {
             const newProduct = await productsService.createProduct(payload, files)
             const response = successResponse(newProduct)
+            req.logger.info('Product created successfully')
             res.status(HTTP_STATUS.CREATED).json(response)
 
         } catch (err) {
@@ -62,6 +55,7 @@ class ProductsController {
         try {
             const updatedProduct = await productsService.updateProductById(id, payload)
             const response = successResponse(updatedProduct)
+            req.logger.info('Product updated successfully')
             res.status(HTTP_STATUS.OK).json(response)
 
         } catch (err) {
@@ -75,6 +69,7 @@ class ProductsController {
         try {
             const productToDelete = await productsService.deleteProductById(id)
             const response = successResponse(productToDelete)
+            req.logger.info('Product deleted successfully')
             res.status(HTTP_STATUS.OK).json(response)
 
         } catch (err) {

@@ -6,7 +6,7 @@ export const DB_CONFIG = {
             uri: ENV.MONGO_LOCAL_URI,
         },
         atlas: {
-            // uri: ENV.MONGO_ATLAS_URI,
+            uri: ENV.MONGO_ATLAS_URI
         }
     }
 }

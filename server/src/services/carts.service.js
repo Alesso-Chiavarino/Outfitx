@@ -1,6 +1,5 @@
 import { getDaos } from "../models/daos/factory.js";
 import { HttpError, HTTP_STATUS } from "../utils/api.utils.js";
-import { validateProduct } from "../utils/validator.js";
 
 const { cartsDao, productsDao } = getDaos();
 
@@ -27,7 +26,7 @@ export class CartsService {
     async createCart() {
         const cart = await cartsDao.createCart()
         if(!cart) {
-            throw new HttpError('Cart not created', HTTP_STATUS.INTERNAL_SERVER_ERROR)
+            throw new HttpError('Cart not created', HTTP_STATUS.INTERNAL_SERVER)
         }
         return cart
     }
