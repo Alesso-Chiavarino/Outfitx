@@ -59,3 +59,5 @@ io.on('connection', (socket) => {
     //     socket.broadcast.emit('new-user', user)
     // })
 })
+
+export default app
