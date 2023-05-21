@@ -24,4 +24,33 @@ export const validateProduct = (payload) => {
     if (!category) {
         throw new HttpError('category is required', HTTP_STATUS.BAD_REQUEST);
     }
-};
+}
+
+export const validateUser = (payload) => {
+    const { user_name, last_name, email, password, role, cart } = payload
+
+    if (!user_name) {
+        throw new HttpError('username is required', HTTP_STATUS.BAD_REQUEST);
+    }
+
+    if (!last_name) {
+        throw new HttpError('lastname is required', HTTP_STATUS.BAD_REQUEST);
+    }
+
+    if (!email) {
+        throw new HttpError('email is required', HTTP_STATUS.BAD_REQUEST);
+    }
+
+    if (!password) {
+        throw new HttpError('password is required', HTTP_STATUS.BAD_REQUEST);
+    }
+
+    if (!role) {
+        throw new HttpError('role is required', HTTP_STATUS.BAD_REQUEST);
+    }
+
+    if (!cart) {
+        throw new HttpError('cart is required', HTTP_STATUS.BAD_REQUEST);
+    }
+
+}

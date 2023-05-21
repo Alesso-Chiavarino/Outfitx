@@ -1,18 +1,16 @@
-import { devLogger } from "../utils/logger.js"
+import { devLogger, prodLogger } from "../utils/logger.js"
+import { args } from "../config/args.config.js"
 
 export const addLogger = (req, res, next) => {
-    req.logger = devLogger
-    // logger.http(`[${req.method}] => ${req.url} - ${new Date().toLocaleTimeString()}`)
+    switch (args.mode) {
+        case 'development': {
+            req.logger = devLogger
+            break
+        }
+        case 'production': {
+            req.logger = prodLogger
+            break
+        }
+    }
     next()
 }
-
-// export const addLogger = (req, res, next) => {
-//     const addLogger = (req, res, next) => {
-//         if (args.mode === 'production') {
-//             req.logger = prodLogger
-//         } else {
-//             req.logger = devLogger
-//         }
-//         next()
-//     }
-// }

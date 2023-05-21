@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "test": "mocha test/**/*.test.js"
+    "test": "mocha test/**/*.test.js --file test/setup.test.js --timeout 5000"
   },
   "type": "module",
   "author": "Alessandro Chiavarino",
@@ -14,6 +14,8 @@
   "devDependencies": {
     "@faker-js/faker": "^8.0.0",
     "artillery": "^2.0.0-32",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
     "nodemon": "^2.0.22"
   },
   "dependencies": {
@@ -36,6 +38,7 @@
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
     "socket.io": "^4.6.1",
+    "supertest": "^6.3.3",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.3",
     "twilio": "^4.11.0",

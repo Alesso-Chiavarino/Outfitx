@@ -5,31 +5,11 @@ import { Server } from 'socket.io'
 import { logError, logSuccess } from './utils/console.utils.js'
 import apiRouter from './routers/app.routes.js'
 import { addLogger } from './middlewares/logger.middleware.js'
-import swaggerJsDoc from 'swagger-jsdoc'
 import { serve as swaggerServe, setup as swaggerSetup } from 'swagger-ui-express'
-
+import { specs } from './config/swagger.config.js'
 const app = express()
 
 const { PORT } = ENV
-
-const swaggerOptions = {
-    definition: {
-        openapi: '3.0.1',
-        info: {
-            title: 'Outfitx API',
-            description: 'Ecommerce API',
-            version: '1.0.0',
-            contact: {
-                name: 'Alessandro Chiavarino',
-                url: 'https://portafolio-alessandro-chiavarino.vercel.app',
-                email: 'alessochiavarino@gmail.com'
-            }
-        },
-    },
-    apis: [`${process.cwd()}/src/docs/**/*.yml`]
-};
-
-const specs = swaggerJsDoc(swaggerOptions)
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

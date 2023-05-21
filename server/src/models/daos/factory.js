@@ -2,7 +2,7 @@ import ENV from '../../config/env.config.js'
 import { LogColors } from '../../utils/console.utils.js'
 import { MongoManager } from '../db/mongo/mongo.manager.js'
 
-let cartsDao, productsDao
+let cartsDao, productsDao, usersDao
 const { DATA_SOURCE } = ENV
 
 LogColors.logBlue(`Using ${DATA_SOURCE} as persistence method`)
@@ -21,8 +21,10 @@ switch (DATA_SOURCE) {
         MongoManager.connect()
         const { ProductsMongoDAO } = await import('./mongo/productsMongo.dao.js')
         const { CartsMongoDAO } = await import('./mongo/cartsMongo.dao.js')
+        const { UsersMongoDAO } = await import('./mongo/usersMongo.dao.js')
         productsDao = new ProductsMongoDAO()
         cartsDao = new CartsMongoDAO()
+        usersDao = new UsersMongoDAO()
         break;
     }
 
@@ -35,5 +37,6 @@ export const getDaos = () => {
     return {
         cartsDao,
         productsDao,
+        usersDao,
     }
 }
