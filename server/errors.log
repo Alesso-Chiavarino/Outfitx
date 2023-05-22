@@ -1,4 +1,6 @@
 {"level":"error","message":"Cast to ObjectId failed for value \"1\" (type string) at path \"_id\" for model \"products\""}
 {"level":"error","message":"Cast to ObjectId failed for value \"646109e7338526ef8b2da7cbs\" (type string) at path \"_id\" for model \"products\""}
 {"level":"error","message":"Operation `products.countDocuments()` buffering timed out after 10000ms"}
-{"level":"error","message":"Cannot convert undefined or null to object"}
+{"level":"error","message":"Cannot convert undefined or null to object"}{"level":"error","message":"title is required"}
+{"level":"error","message":"title is required"}
+{"level":"error","message":"title is required"}
