@@ -25,7 +25,7 @@ export class CartsService {
 
     async createCart() {
         const cart = await cartsDao.createCart()
-        if(!cart) {
+        if (!cart) {
             throw new HttpError('Cart not created', HTTP_STATUS.INTERNAL_SERVER)
         }
         return cart
@@ -82,5 +82,20 @@ export class CartsService {
 
         const emptyCart = await cartsDao.clearCart(id)
         return emptyCart
+    }
+
+    async deleteCart(id) {
+        if (!id) {
+            throw new HttpError('Missing id', HTTP_STATUS.BAD_REQUEST)
+        }
+
+        const cart = await cartsDao.getCartById(id)
+
+        if (!cart) {
+            throw new HttpError('Cart not found', HTTP_STATUS.NOT_FOUND)
+        }
+
+        const deletedCart = await cartsDao.deleteCart(id)
+        return deletedCart
     }
 }

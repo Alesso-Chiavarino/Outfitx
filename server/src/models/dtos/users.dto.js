@@ -1,5 +1,5 @@
 export class createUserDTO {
-    constructor(payload, file) {
+    constructor(payload, files) {
         this.user_name = payload.user_name
         this.last_name = payload.last_name
         this.email = payload.email
@@ -8,12 +8,16 @@ export class createUserDTO {
         this.github_login = payload.github_login
         this.role = payload.role
         this.cart = payload.cart
-        if (file) {
-            const paths = {
-                path: file.path,
-                originalName: file.originalname
-            }
+        if (files) {
+            const paths = files.map(file => {
+                return {
+                    path: file.path,
+                    originalName: file.originalname
+                }
+            })
             this.profile_pic = paths
+        } else {
+            this.profile_pic = []
         }
     }
 

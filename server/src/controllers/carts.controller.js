@@ -83,4 +83,18 @@ export class CartsController {
             next(err)
         }
     }
+
+    static async deleteCart(req, res, next) {
+        const { id } = req.params
+
+        try {
+            const deletedCart = await cartsService.deleteCart(id)
+            const response = successResponse(deletedCart)
+            req.logger.info('Cart deleted successfully')
+            res.status(HTTP_STATUS.OK).json(response)
+
+        } catch (err) {
+            next(err)
+        }
+    }
 }

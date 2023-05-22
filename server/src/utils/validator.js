@@ -27,7 +27,7 @@ export const validateProduct = (payload) => {
 }
 
 export const validateUser = (payload) => {
-    const { user_name, last_name, email, password, role, cart } = payload
+    const { user_name, last_name, email, password, role } = payload
 
     if (!user_name) {
         throw new HttpError('username is required', HTTP_STATUS.BAD_REQUEST);
@@ -47,10 +47,6 @@ export const validateUser = (payload) => {
 
     if (!role) {
         throw new HttpError('role is required', HTTP_STATUS.BAD_REQUEST);
-    }
-
-    if (!cart) {
-        throw new HttpError('cart is required', HTTP_STATUS.BAD_REQUEST);
     }
 
 }

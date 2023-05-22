@@ -50,4 +50,9 @@ export class CartsMongoDAO {
 
         return emptyCart
     }
+
+    async deleteCart(id) {
+        const deletedCart = await cartModel.findByIdAndDelete(id)
+        return deletedCart
+    }
 }

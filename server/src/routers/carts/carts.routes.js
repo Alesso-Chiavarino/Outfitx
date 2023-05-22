@@ -9,5 +9,6 @@ router.post('/', CartsController.createCart)
 router.put('/:id/product/:pid', CartsController.addToCart)
 router.delete('/:id/product/:pid', CartsController.removeFromCart)
 router.delete('/:id', CartsController.clearCart)
+router.delete('/remove/:id', CartsController.deleteCart)
 
 export default router

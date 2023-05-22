@@ -1,5 +1,4 @@
 import { userModel } from "../../schemas/user.model.js";
-import { HTTP_STATUS, HttpError } from "../../../utils/api.utils.js";
 
 export class UsersMongoDAO {
 
@@ -15,9 +14,11 @@ export class UsersMongoDAO {
 
     getUserByEmail = async (email) => {
         const user = await userModel.findOne({ email })
+        return user
     }
 
     createUser = async (payload) => {
+        console.log(payload)
         const newUser = await userModel.create(payload)
         return newUser
     }
