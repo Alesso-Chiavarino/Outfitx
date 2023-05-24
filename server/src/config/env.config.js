@@ -6,6 +6,7 @@ const ENV = {
     PORT: process.env.PORT || 8080,
     NODE_ENV: process.env.NODE_ENV || 'development',
     MONGO_LOCAL_URI: process.env.MONGO_LOCAL_URI || '',
+    MONGO_LOCAL_TEST_URI: process.env.MONGO_LOCAL_URI_TEST || '',
     MONGO_ATLAS_URI: process.env.MONGO_ATLAS_URI || '',
     DATA_SOURCE: process.env.DATA_SOURCE || 'FILE',
     GOOGLE: {

@@ -7,7 +7,7 @@ export class MongoManager {
 
     constructor() {
         mongoose.set('strictQuery', false)
-        mongoose.connect(DB_CONFIG.mongo.local.uri)
+        mongoose.connect(DB_CONFIG.mongo.local.test.uri)
             .then(res => {
                 LogColors.logMagenta('MongoDB connection established')
             })

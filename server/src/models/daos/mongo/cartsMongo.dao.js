@@ -33,7 +33,7 @@ export class CartsMongoDAO {
         const updatedCart = cartModel.updateOne({ _id: id }, {
             $pull: {
                 products: {
-                    product: { _id: pid }
+                    _id: pid
                 }
             }
         }, { new: true })

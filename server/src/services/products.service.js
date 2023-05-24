@@ -12,7 +12,7 @@ export class ProductsService {
         const products = await productsDao.getProducts(filter)
         const productsPayloadDto = []
 
-        if(!products.docs.length) {
+        if (!products.docs.length) {
             throw new HttpError('No products found', HTTP_STATUS.NOT_FOUND)
         }
 
@@ -60,15 +60,15 @@ export class ProductsService {
 
         const product = await productsDao.getProductById(id)
 
-        if(!product) {
+        if (!product) {
             throw new HttpError('Product not found', HTTP_STATUS.NOT_FOUND)
         }
 
-        validateProduct(payload)
+        // validateProduct(payload)
 
         const productPayloadDto = new UpdateProductDTO(payload)
 
-        const updatedProduct = await productsDao.updateProductById(id ,productPayloadDto)
+        const updatedProduct = await productsDao.updateProductById(id, productPayloadDto)
 
         return updatedProduct
 
@@ -76,13 +76,13 @@ export class ProductsService {
 
     async deleteProductById(id) {
 
-        if(!id) {
+        if (!id) {
             throw new HttpError('Missing id', HTTP_STATUS.BAD_REQUEST)
         }
 
         const product = await productsDao.getProductById(id)
 
-        if(!product) {
+        if (!product) {
             throw new HttpError('Product not found', HTTP_STATUS.NOT_FOUND)
         }
 

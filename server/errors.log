@@ -4,3 +4,22 @@
 {"level":"error","message":"Cannot convert undefined or null to object"}{"level":"error","message":"title is required"}
 {"level":"error","message":"title is required"}
 {"level":"error","message":"title is required"}
+{"level":"error","message":"category is required"}
+{"level":"error","message":"Operation `products.insertOne()` buffering timed out after 10000ms"}
+{"level":"error","message":"Operation `products.insertOne()` buffering timed out after 10000ms"}
+{"level":"error","message":"Operation `products.insertOne()` buffering timed out after 10000ms"}
+{"level":"error","message":"Operation `products.insertOne()` buffering timed out after 10000ms"}
+{"level":"error","message":"Operation `carts.insertOne()` buffering timed out after 10000ms"}
+{"level":"error","message":"Operation `carts.insertOne()` buffering timed out after 10000ms"}
+{"level":"error","message":"Operation `carts.insertOne()` buffering timed out after 10000ms"}
+{"level":"error","message":"Operation `carts.insertOne()` buffering timed out after 10000ms"}
+{"level":"error","message":"Operation `carts.insertOne()` buffering timed out after 10000ms"}
+{"level":"error","message":"Operation `carts.insertOne()` buffering timed out after 10000ms"}
+{"level":"error","message":"Operation `carts.insertOne()` buffering timed out after 10000ms"}
+{"level":"error","message":"Operation `carts.insertOne()` buffering timed out after 10000ms"}
+{"level":"error","message":"No products found"}
+{"level":"error","message":"No products found"}
+{"level":"error","message":"description is required"}
+{"level":"error","message":"description is required"}
+{"level":"error","message":"No products found"}
+{"level":"error","message":"No products found"}
