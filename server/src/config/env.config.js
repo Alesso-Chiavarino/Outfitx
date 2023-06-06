@@ -21,6 +21,11 @@ const ENV = {
         AUTH_TOKEN: process.env.TWILIO_AUTH_TOKEN || '',
         ACCOUNT_SID: process.env.TWILIO_ACCOUNT_SID || '',
         PHONE_NUMBER: process.env.TWILIO_PHONE_NUMBER || '',
+    },
+    GITHUB: {
+        CLIENT_ID: process.env.GITHUB_CLIENT_ID || '',
+        CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET || '',
+        CALLBACK_URL: process.env.GITHUB_CALLBACK_URL || '',
     }
 }
 

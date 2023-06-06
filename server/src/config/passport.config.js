@@ -9,7 +9,7 @@ import { cookieExtractor } from '../utils/session.utils.js'
 import ENV from './env.config.js'
 import { CreateUserDTO, GetUserDTO } from '../models/dtos/users.dto.js'
 
-const { SECRET_KEY, ADMIN_NAME, ADMIN_PASSWORD } = ENV
+const { SECRET_KEY, ADMIN_NAME, ADMIN_PASSWORD, GITHUB: { CALLBACK_URL, CLIENT_ID, CLIENT_SECRET } } = ENV
 
 const { cartsDao, usersDao } = getDaos()
 
@@ -65,7 +65,6 @@ export const initializePassport = () => {
         }
 
     )),
-
         //Local Login
         passport.use('login', new LocalStrategy(
             { usernameField: 'email' },
@@ -99,9 +98,9 @@ export const initializePassport = () => {
     //Github Strategy
     passport.use(
         new GithubStrategy({
-            clientID: 'Iv1.b64438eddbef112a',
-            clientSecret: '5d13665a8920d446f405d371dfbb9af26561a52e',
-            callbackURL: 'http://localhost:8080/api/session/github/callback'
+            clientID: CLIENT_ID,
+            clientSecret: CLIENT_SECRET,
+            callbackURL: CALLBACK_URL
         },
             async (accessToken, refreshToken, profile, done) => {
                 const userData = profile._json
