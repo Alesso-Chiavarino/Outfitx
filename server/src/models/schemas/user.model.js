@@ -26,7 +26,8 @@ const schema = new Schema({
         type: Number
     },
     github_login: {
-        type: String
+        type: String,
+        unique: true
     },
     role: {
         type: String,
@@ -41,6 +42,20 @@ const schema = new Schema({
     },
     profile_pic: {
         type: Object
+    },
+    documents: [
+        {
+            name: {
+                type: String,
+            },
+            reference: {
+                type: String,
+            }
+        }
+    ],
+    last_connection: {
+        type: Date,
+        default: Date.now()
     }
 })
 

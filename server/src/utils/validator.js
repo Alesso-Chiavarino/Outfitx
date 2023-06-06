@@ -1,7 +1,6 @@
 import { HTTP_STATUS, HttpError } from "./api.utils.js"
 
-export const validateProduct = (payload) => {
-    const { title, description, code, stock, price, category } = payload;
+export const validateProduct = ({ title, description, code, stock, price, category }) => {
 
     if (!title) {
         throw new HttpError('title is required', HTTP_STATUS.BAD_REQUEST);
@@ -26,8 +25,7 @@ export const validateProduct = (payload) => {
     }
 }
 
-export const validateUser = (payload) => {
-    const { user_name, last_name, email, password, role } = payload
+export const validateUser = ({ user_name, last_name, email, password, role }) => {
 
     if (!user_name) {
         throw new HttpError('username is required', HTTP_STATUS.BAD_REQUEST);

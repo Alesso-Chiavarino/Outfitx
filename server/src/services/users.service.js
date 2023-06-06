@@ -1,5 +1,5 @@
 import { getDaos } from "../models/daos/factory.js";
-import { createUserDTO } from "../models/dtos/users.dto.js";
+import { CreateUserDTO } from "../models/dtos/users.dto.js";
 import { HttpError, HTTP_STATUS } from "../utils/api.utils.js";
 import { validateUser } from "../utils/validator.js";
 
@@ -37,7 +37,7 @@ export class UsersService {
         const newCart = await cartsDao.createCart()
         payload.cart = newCart._id
 
-        const userPayloadDto = new createUserDTO(payload, files)
+        const userPayloadDto = new CreateUserDTO(payload, files)
 
         const newUser = await usersDao.createUser(userPayloadDto)
         return newUser
@@ -52,8 +52,6 @@ export class UsersService {
         if (!Object.keys(payload).length) {
             throw new HttpError('Missing data for user', HTTP_STATUS.BAD_REQUEST)
         }
-
-        // validateUser(payload)
 
         const updatedUser = await usersDao.updateUserById(id, payload)
 

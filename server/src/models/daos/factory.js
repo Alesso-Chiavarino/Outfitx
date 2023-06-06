@@ -10,8 +10,8 @@ LogColors.logBlue(`Using ${DATA_SOURCE} as persistence method`)
 switch (DATA_SOURCE) {
 
     case "FILE": {
-        const { CartsMemoryDAO } = await import('./memory/cartsMemory.dao.js')
-        const { ProductsMemoryDAO } = await import('./memory/productsMemory.dao.js')
+        const { CartsMemoryDAO } = await import('./memory/carts.memory.dao.js')
+        const { ProductsMemoryDAO } = await import('./memory/products.memory.dao.js')
         cartsDao = new CartsMemoryDAO('carts.json')
         productsDao = new ProductsMemoryDAO('products.json')
         break;
@@ -19,9 +19,9 @@ switch (DATA_SOURCE) {
 
     case "MONGO": {
         MongoManager.connect()
-        const { ProductsMongoDAO } = await import('./mongo/productsMongo.dao.js')
-        const { CartsMongoDAO } = await import('./mongo/cartsMongo.dao.js')
-        const { UsersMongoDAO } = await import('./mongo/usersMongo.dao.js')
+        const { ProductsMongoDAO } = await import('./mongo/products.mongo.dao.js')
+        const { CartsMongoDAO } = await import('./mongo/carts.mongo.dao.js')
+        const { UsersMongoDAO } = await import('./mongo/users.mongo.dao.js')
         productsDao = new ProductsMongoDAO()
         cartsDao = new CartsMongoDAO()
         usersDao = new UsersMongoDAO()

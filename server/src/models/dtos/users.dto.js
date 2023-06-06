@@ -1,4 +1,18 @@
-export class createUserDTO {
+export class GetUserDTO{
+    constructor(payload){
+        this.id = payload._id
+        this.firstName = payload.first_name;
+        this.lastName = payload.last_name;
+        this.email = payload.email;
+        this.age = payload.age
+        this.githubLogin = payload.github_login
+        this.role = payload.role
+        this.cart = payload.cart
+        this.profilePic = payload.profile_pic
+    }
+}
+
+export class CreateUserDTO {
     constructor(payload, files) {
         this.user_name = payload.user_name
         this.last_name = payload.last_name

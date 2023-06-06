@@ -23,6 +23,7 @@ uuid ===> to create random id
 swagger-jsdoc ===> to create documentation
 swagger-ui-express ===> to add a route to see the documentation
 supertest ===> to test the api
+jsonwebtoken ===> 
 
 devDependencies {
     nodemon ===> to restard the server when a file changes

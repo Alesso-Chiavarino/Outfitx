@@ -9,6 +9,10 @@ const ENV = {
     MONGO_LOCAL_TEST_URI: process.env.MONGO_LOCAL_URI_TEST || '',
     MONGO_ATLAS_URI: process.env.MONGO_ATLAS_URI || '',
     DATA_SOURCE: process.env.DATA_SOURCE || 'FILE',
+    SECRET_KEY: process.env.SECRET_KEY || '',
+    SESSION_KEY: process.env.SESSION_KEY || '',
+    ADMIN_NAME: process.env.ADMIN_NAME || '',
+    ADMIN_PASSWORD: process.env.ADMIN_PASSWORD || '',
     GOOGLE: {
         APLICATION_PASSWORD: process.env.GOOGLE_APLICATION_PASSWORD || '',
         EMAIL: process.env.GOOGLE_EMAIL || '',

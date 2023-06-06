@@ -14,9 +14,12 @@ let transporter = nodemailer.createTransport({
 })
 
 const html = `
-    <h1>Hi</h1>
-    <p>How are you?</p>
-    <p>I like dicks</p>
+    <h1>Outfitx</h1>
+    <h3>Hello, {CLIENT NAME}</h3>
+    <p>Order confirmation</p>
+    <p>Thank you for your purchase</p>
+    <h3>Details</h3>
+    <p>Oder num: {NUM OF ORDER}</p>
 `
 
 const sendMail = async (to, subject, html) => {
