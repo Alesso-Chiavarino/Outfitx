@@ -8,30 +8,48 @@ import { addLogger } from './middlewares/logger.middleware.js'
 import { serve as swaggerServe, setup as swaggerSetup } from 'swagger-ui-express'
 import { specs } from './config/swagger.config.js'
 import handlebars from 'express-handlebars'
+import helpers from 'handlebars-helpers'
 import path from 'path'
 import __dirname from './utils/dirname.utils.js'
-
+import passport from 'passport'
+import { initializePassport } from './config/passport.config.js'
+import cookieParser from 'cookie-parser'
+import flash from 'connect-flash'
+import viewsRouter from './routers/views/views.routes.js'
 
 const app = express()
 
 const { PORT } = ENV
 
+//Middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(cookieParser())
 app.use(cors({
     origin: 'http://localhost:3000',
 }))
 app.use(addLogger)
 app.use('/api', apiRouter)
+app.use('/', viewsRouter)
 app.use('/api/doc', swaggerServe, swaggerSetup(specs))
+app.use('/statics', express.static(path.resolve(__dirname, '../../public')))
+initializePassport()
+app.use(passport.initialize())
+app.use(flash())
 
 //views
-app.engine('handlebars', handlebars.engine())
-app.set('views', path.resolve(__dirname, './views'));
+const math = helpers.math();
+app.engine('handlebars', handlebars.engine({
+    helpers: {
+        math
+    }
+}))
+app.set('views', path.resolve(__dirname, '../views'));
+
 app.set('view engine', 'handlebars');
 
 const server_url = `http://localhost:${PORT}`
-const server = app.listen(PORT, () => logSuccess(`server is running in ${server_url}`)) 
+const server = app.listen(PORT, () => logSuccess(`server is running in ${server_url}`))
 
 server.on("error", (error) => {
     logError("There was an error starting the server");

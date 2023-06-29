@@ -1,0 +1,36 @@
+<div class="register-container">
+    <h1 class="signup-title">Crear usuario</h1>
+    <div class="register-form-container">
+        <form class="register-form" id="register-form" enctype="multipart/form-data" onsubmit="registerUser(event)">
+            <div class="input-field">
+                <label for="first_name-input">Nombre/s</label>
+                <input type="text" class="validate" name="firstName" id="last_name-input" required>
+            </div>
+            <div class="input-field">
+                <label for="last_name-input">Apellido</label>
+                <input type="text" class="validate" name="lastName" id="last_name-input" required>
+            </div>
+            <div class="input-field">
+                <label for="email-input">Email</label>
+                <input type="email" class="validate" name="email" id="email-input" required>
+            </div>
+            <div class="input-field">
+                <label for="age-input">Edad</label>
+                <input type="number" class="validate" name="age" min="1" max="100" id="age-input" required>
+            </div>
+            <div class="input-field">
+                <label for="password-input">Contraseña</label>
+                <input type="password" class="validate" name="password" id="password-input" required>
+            </div>
+            <div class="input-field">
+                <label for="pic-input">Escoge una foto de perfil</label>
+                <input type="file" class="validate" name="file" id="pic-input">
+            </div>
+            <input class="register-submit" type="submit" value="Crear">
+        </form>
+    </div>
+    <a href="/login" class="login-anchor">¿Ya tienes una cuenta? ¡Ingresa!</a>
+</div>
+
+
+<script src="/statics/js/register.js"></script>

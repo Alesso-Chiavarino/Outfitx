@@ -24,3 +24,60 @@
 {"level":"error","message":"No products found"}
 {"level":"error","message":"No products found"}
 {"level":"error","message":"No products found"}
+{"level":"error","message":"No products found"}
+{"level":"error","message":"usersDao.getByEmail is not a function"}
+{"level":"error","message":"usersDao.getByEmail is not a function"}
+{"level":"error","message":"usersService.updateUser is not a function"}
+{"level":"error","message":"Expected \"payload\" to be a plain object."}
+{"level":"error","message":"Error getting user: TypeError: cartsDao.add is not a function"}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Expected \"payload\" to be a plain object."}
+{"level":"error","message":"Expected \"payload\" to be a plain object."}
+{"level":"error","message":"Error getting user: TypeError: cartsDao.add is not a function"}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Error getting user: TypeError: cartsDao.add is not a function"}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Error getting user: ValidationError: user_name: Path `user_name` is required., last_name: Path `last_name` is required."}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Missing fields"}
+{"level":"error","message":"Missing fields"}
+{"level":"error","message":"Missing fields"}
+{"level":"error","message":"Missing fields"}
+{"level":"error","message":"Missing fields"}
+{"level":"error","message":"Missing fields"}
+{"level":"error","message":"Missing fields"}
+{"level":"error","message":"Error getting user: ValidationError: user_name: Path `user_name` is required., last_name: Path `last_name` is required."}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Error getting user: ValidationError: user_name: Path `user_name` is required., last_name: Path `last_name` is required."}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Error getting user: ValidationError: user_name: Path `user_name` is required., last_name: Path `last_name` is required."}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Error getting user: ValidationError: user_name: Path `user_name` is required."}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Error getting user: ValidationError: user_name: Path `user_name` is required."}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Missing fields"}
+{"level":"error","message":"Error getting user: ValidationError: user_name: Path `user_name` is required."}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Error getting user: ValidationError: user_name: Path `user_name` is required."}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Error getting user: ValidationError: user_name: Path `user_name` is required."}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Error getting user: MongoServerError: E11000 duplicate key error collection: outfitx.users index: github_login_1 dup key: { github_login: null }"}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Error getting user: MongoServerError: E11000 duplicate key error collection: outfitx.users index: github_login_1 dup key: { github_login: null }"}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Error getting user: MongoServerError: E11000 duplicate key error collection: outfitx.users index: github_login_1 dup key: { github_login: null }"}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Error getting user: MongoServerError: E11000 duplicate key error collection: outfitx.users index: github_login_1 dup key: { github_login: null }"}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Error getting user: MongoServerError: E11000 duplicate key error collection: outfitx.users index: github_login_1 dup key: { github_login: \"hola\" }"}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Error getting user: MongoServerError: E11000 duplicate key error collection: outfitx.users index: github_login_1 dup key: { github_login: null }"}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Error getting user: MongoServerError: E11000 duplicate key error collection: outfitx.users index: github_login_1 dup key: { github_login: \"ke\" }"}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Error getting user: MongoServerError: E11000 duplicate key error collection: outfitx.users index: github_login_1 dup key: { github_login: null }"}
+{"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Error getting user: MongoServerError: E11000 duplicate key error collection: outfitx.users index: github_login_1 dup key: { github_login: null }"}
+{"level":"error","message":"There was an unknown error"}

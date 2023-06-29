@@ -31,15 +31,16 @@ export class UsersService {
         if (!Object.keys(payload).length) {
             throw new HttpError('Missing data for user', HTTP_STATUS.BAD_REQUEST)
         }
-
-        validateUser(payload)
-
-        const newCart = await cartsDao.createCart()
+        if (files) {
+            const paths = {
+                path: files.path,
+                originalName: files.originalname
+            }
+            payload.profilePic = paths
+        }
+        const newCart = await cartsDao.add()
         payload.cart = newCart._id
-
-        const userPayloadDto = new CreateUserDTO(payload, files)
-
-        const newUser = await usersDao.createUser(userPayloadDto)
+        const newUser = await usersDao.addUser(payload)
         return newUser
     }
 

@@ -3,10 +3,6 @@ import { Schema, model } from "mongoose";
 const collection = 'users'
 
 const schema = new Schema({
-    user_name: {
-        type: String,
-        required: true
-    },
     last_name: {
         type: String,
         required: true
@@ -27,12 +23,12 @@ const schema = new Schema({
     },
     github_login: {
         type: String,
-        unique: true
+        unique: false
     },
     role: {
         type: String,
-        enum: ['USER', 'ADMIN'],
-        default: 'USER',
+        enum: ['user', 'admin', 'premium'],
+        default: 'user',
         required: true
     },
     cart: {
@@ -43,16 +39,18 @@ const schema = new Schema({
     profile_pic: {
         type: Object
     },
-    documents: [
-        {
-            name: {
-                type: String,
-            },
-            reference: {
-                type: String,
+    documents: {
+        type: [
+            {
+                name: String,
+                reference: String,
+                doctype: {
+                    type: String,
+                    enum: ['id', 'address', 'account_status']
+                }
             }
-        }
-    ],
+        ]
+    },
     last_connection: {
         type: Date,
         default: Date.now()

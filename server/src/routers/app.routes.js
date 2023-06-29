@@ -5,6 +5,7 @@ import errorHandler from "../middlewares/error.middleware.js";
 import productsMock from "./mocks/mocks.routes.js";
 import loggerRouter from "./logger/logger.routes.js";
 import usersRouter from './users/users.routes.js'
+import sessionRouter from './session/session.routes.js'
 
 const router = Router();
 
@@ -17,6 +18,7 @@ router.use('/products', productsRouter)
 router.use('/users', usersRouter)
 router.use('/mockingproducts', productsMock)
 router.use('/loggerTest', loggerRouter)
+router.use('/session', sessionRouter)
 router.use(errorHandler)
 
 export default router

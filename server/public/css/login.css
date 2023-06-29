@@ -1,0 +1,76 @@
+.login-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-title{
+    text-align: center;
+    font-size: 3rem;
+    color: #b8c4b9;
+}
+
+.login-form-container{
+    width: 70%;
+    max-width: 40rem;
+    background-color: #fff;
+    border-radius: 0.2rem;
+    padding: 4rem;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem
+}
+
+.input-field{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-bottom: 1rem;
+}
+
+.login-submit{
+    background-color: #40b44f;
+    padding: 0.8rem;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    border-radius: 0.3rem;
+}
+
+.password-recovering{
+    margin: 2rem;
+}
+
+.signup-anchor{
+    margin: 2rem;
+    display: block;
+    text-align: center;
+    font-size: 1.5rem;
+    text-decoration: underline;
+    color: #1242a8;
+}
+
+.signup-anchor:hover{
+    color: #2865e7;
+}
+
+.github-login{
+    margin: 2rem auto;
+    display: block;
+    background-color: #a740b4;
+    padding: 0.8rem;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    border-radius: 0.3rem;
+}
+
+.github-login a{
+    color: #000;
+    text-decoration: none;
+}

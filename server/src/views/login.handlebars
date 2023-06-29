@@ -1,0 +1,22 @@
+<div class="login-container">
+    <h1 class="login-title">Inicia Sesión</h1>
+
+    <div class="login-form-container">
+        <form class="login-form" action="/api/session/login" method="post">
+            <div class="input-field">
+                <label for="email-input">Email</label>
+                <input type="email" class="validate" name="email" id="email-input">
+            </div>
+            <div class="input-field">
+                <label for="password-input">Contraseña</label>
+                <input type="password" class="validate" name="password" id="password-input">
+            </div>
+            <a href="/login/recover" class="password-recovering">¿Olvidaste tu contraseña?</a>
+            <input class="login-submit" type="submit" value="Ingresar">
+        </form>
+    </div>
+
+    <button class="github-login"><a href="/api/session/github">Ingresar con Github</a></button>
+</div>
+
+<a href="/register" class="signup-anchor">¿Eres nuevo por aquí? ¡Regístrate!</a>

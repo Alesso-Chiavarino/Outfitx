@@ -25,11 +25,7 @@ export const validateProduct = ({ title, description, code, stock, price, catego
     }
 }
 
-export const validateUser = ({ user_name, last_name, email, password, role }) => {
-
-    if (!user_name) {
-        throw new HttpError('username is required', HTTP_STATUS.BAD_REQUEST);
-    }
+export const validateUser = ({ last_name, email, password, role }) => {
 
     if (!last_name) {
         throw new HttpError('lastname is required', HTTP_STATUS.BAD_REQUEST);

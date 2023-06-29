@@ -1,0 +1,44 @@
+<div class="banner-container">
+    <h2 class="banner-info_1">Los mejores productos de nuestra tierra</h2>
+    <h3 class="banner-info_2">Al mejor precio del mercado</h3>
+    {{!-- <img class="banner-img" src="/statics/assets/banner.jpg" alt="yerba mate"> --}}
+</div>
+<div class="index-container">
+    <div class="filter-container">
+        <button class="filter-btn todo" onclick="filterResults(event, null)">Todo</button>
+        <button class="filter-btn mates" onclick="filterResults(event, 'mate')">Mates</button>
+        <button class="filter-btn termos" onclick="filterResults(event, 'termo')">Termos</button>
+        <button class="filter-btn bombillas" onclick="filterResults(event, 'bombilla')">Bombillas</button>
+    </div>
+    <h3 class="amount-tag">{{products.totalDocs}} resultados</h3>
+    <div id="product-list-container">
+        {{#each products.docs}}
+            <a class="product-item" id={{id}} onclick="seeProduct(event, `{{id}}`)">
+                {{#if thumbnails}}
+                    <div class="thumbnail-container">
+                        <img src="../../statics/products/{{thumbnails.[0].originalName}}" alt="">
+                    </div>
+                    {{else}}
+                        <p id="no-image">no image</p>
+                {{/if}}
+                <p id="item-title">{{title}}</p>
+                <p class="price-tag">${{price}}</p>
+                <p class="item-description">{{description}}</p>
+            </a>
+        {{/each}}
+    </div>
+    <div class="pag-btn-container">
+        {{#if products.hasPrevPage}}
+            <a href={{products.prevLink}} class="pagLink">Anterior</a>
+            {{else}}
+            <p class="pagLink disabled" disabled>Anterior</p>
+        {{/if}}
+        {{#if products.hasNextPage}}
+            <a href={{products.nextLink}} class="pagLink">Siguiente</a>
+            {{else}}
+            <p class="pagLink disabled" disabled>Siguiente</p>
+        {{/if}}
+    </div>
+</div>
+
+<script src="/statics/js/index.js"></script>

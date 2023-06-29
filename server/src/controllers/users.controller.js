@@ -28,16 +28,15 @@ export class usersController {
 
     static createUser = async (req, res, next) => {
         const payload = req.body
-        const { files } = req
-        console.log(files)
-
+        const { file } = req
         try {
-            const newUser = await userService.createUser(payload, files)
-            const response = successResponse(newUser)
-            req.logger.info('User created successfully')
-            res.status(HTTP_STATUS.CREATED).json(response)
-        } catch (err) {
-            next(err)
+            const userPayload = new AddUserDTO(payload)
+            const newUser = await usersService.createUser(userPayload, file)
+            req.logger.info('New user created')
+            const response = apiSuccessResponse(newUser)
+            return res.status(HTTP_STATUS.CREATED).json(response)
+        } catch (error) {
+            next(error)
         }
     }
 

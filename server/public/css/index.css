@@ -1,0 +1,207 @@
+.index-container{
+    padding: 0 10%;
+}
+
+.banner-container{
+    height: 25rem;
+    background: linear-gradient(0deg, #1c1f1aff, #1c1f1aaa 80%, #1c1f1a33),url('/statics/assets/banner.jpg');
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-info_1{
+    margin: 1rem auto;
+    color: #d1d1d1;
+    font-size: 2.7rem;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.banner-info_2{
+    margin: 1rem auto;
+    color: #d1d1d1;
+    font-size: 2rem;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.banner-img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.main-title{
+    text-align: center;
+    font-size: 3rem;
+}
+
+.filter-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 4rem 0;
+    margin: 10rem 0;
+}
+
+.filter-btn{
+    font-size: 1.8rem;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    cursor: pointer;
+    color: #fff;
+    text-shadow: 0 0 4px #000;
+    height: 10rem;
+    width: 20rem;
+}
+
+.filter-btn.todo:hover, .filter-btn.mates:hover, .filter-btn.termos:hover, .filter-btn.bombillas:hover{
+    background-size: 110%;
+}
+
+.filter-btn.todo{
+    background:linear-gradient(0deg, #000000aa, #5a480b77), url('/statics/assets/todo-background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.filter-btn.mates{
+    background:linear-gradient(0deg, #000000aa, #17610d77), url('/statics/assets/mates-background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.filter-btn.termos{
+    background:linear-gradient(0deg, #000000aa, #2d0d6177), url('/statics/assets/termos-background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.filter-btn.bombillas{
+    background:linear-gradient(0deg, #000000aa, #610d1877), url('/statics/assets/bombillas-background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+#product-list-container{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 5rem;
+}
+
+.amount-tag{
+    text-align: center;
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 200;
+}
+
+.product-item{
+    background-color: #101010;
+    padding: 0;
+    width: 14rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 300ms;
+    height: 20rem;
+    margin-top: 3rem;
+    color: #f0f0f0;
+    overflow: hidden;
+}
+
+.product-item:hover{
+    height: 23rem;
+    margin-bottom: -3rem;
+    box-shadow: 0 0 8px #000000;
+}
+
+.product-item:hover .item-description{
+    opacity: 1;
+}
+
+#item-title{
+    font-size: 1.1rem;
+    font-weight: 500;
+    min-height: 3rem;
+    margin: 1rem 0 0.5rem;
+    vertical-align: middle;
+}
+
+.item-description{
+    opacity: 0;
+    max-height: 3rem;
+    overflow: hidden;
+    font-size: 0.9rem;
+    transition: opacity 500ms;
+    margin: 1rem;
+    font-weight: 100;
+}
+
+.price-tag{
+    font-weight: 500;
+    margin-top: 1rem;
+    background: radial-gradient(#313131aa, #101010 50%);
+    width: 100%;
+    padding: 1.2rem;
+}
+
+.stock-tag{
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.thumbnail-container{
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    justify-content: center;
+}
+
+.thumbnail-container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+.product-item:hover .thumbnail-container img{
+    filter: brightness(1);
+}
+
+#no-image{
+    color: #555;
+}
+
+.see-cart-button{
+    display: block;
+    margin: 1rem auto;
+}
+
+.pagLink{
+    margin: auto 0;
+    color: #fff;
+}
+
+.pagLink.disabled{
+    color: #888;
+    cursor: not-allowed;
+}
+
+.pag-btn-container{
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    gap: 3rem;
+    font-size: 1.1rem;
+}

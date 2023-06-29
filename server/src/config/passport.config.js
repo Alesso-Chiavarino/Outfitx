@@ -33,19 +33,22 @@ export const initializePassport = () => {
                 return done(null, false)
             }
             try {
-                const user = await usersDao.getByEmail(username)
+                const user = await usersDao.getUserByEmail(username)
                 if (user) {
                     req.logger.error('Unable to create user, email already registered')
                     return done(null, false, 'Unable to create user, email already registered')
                 }
-                const cart = await cartsDao.add()
+                const cart = await cartsDao.createCart()
                 const newUser = {
                     firstName,
-                    lastName,
+                    lastName, 
                     email,
                     age,
                     password: createHash(password),
                     cart: cart._id,
+                    lastConnection: new Date(),
+                    documents: [],
+                    status: false
                 }
                 if (req.file) {
                     const paths = {
@@ -55,7 +58,8 @@ export const initializePassport = () => {
                     newUser.profilePic = paths
                 }
                 const userPayload = new CreateUserDTO(newUser)
-                let result = await usersDao.addUser(userPayload)
+                console.log(userPayload)
+                let result = await usersDao.createUser(userPayload)
                 req.logger.info(`New user registered. ID: ${result._id} `)
                 return done(null, result)
             } catch (error) {
@@ -81,7 +85,7 @@ export const initializePassport = () => {
                         }
                         return done(null, user)
                     }
-                    const user = await usersDao.getByEmail(username)
+                    const user = await usersDao.getUserByEmail(username)
                     if (!user) {
                         return done(null, false, 'user not found')
                     }
@@ -105,9 +109,9 @@ export const initializePassport = () => {
             async (accessToken, refreshToken, profile, done) => {
                 const userData = profile._json
                 try {
-                    const user = await usersDao.getByEmail(userData.email)
+                    const user = await usersDao.getUserByEmail(userData.email)
                     if (!user) {
-                        const cart = await cartsDao.add()
+                        const cart = await cartsDao.createCart()
                         const newUser = {
                             firstName: userData.name.split(' ')[0],
                             lastName: userData.name.split(' ')[1],
@@ -118,7 +122,7 @@ export const initializePassport = () => {
                             cart: cart._id
                         }
                         const userPayload = new CreateUserDTO(newUser)
-                        const response = await usersDao.addUser(userPayload)
+                        const response = await usersDao.createUser(userPayload)
                         const finalUser = response._doc
                         done(null, finalUser)
                         return
@@ -151,6 +155,6 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
-    const user = await usersDao.getById(id)
+    const user = await usersDao.getUserById(id)
     done(null, user);
 });

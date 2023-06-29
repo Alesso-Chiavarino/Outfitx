@@ -1,77 +1,82 @@
-const { Router } = require('express')
-const messageModel = require('../../dao/models/message.model')
-const productModel = require('../../dao/models/product.model')
-const ProductManagerMongo = require('../../dao/mongoManagers/ProductManagerMongo')
-const CartManagerMongo = require('../../dao/mongoManagers/CartManagerMongo')
-const { sessionMiddleware } = require('../../middlewares/session.middleware')
-const { authMiddleware } = require('../../middlewares/auth.middleware')
+import { Router } from 'express'
+import { ViewsController } from '../../controllers/views.controller.js'
+import { sessionMiddleware } from '../../middlewares/session.middleware.js'
+import { authMiddleware } from '../../middlewares/auth.middleware.js'
+import { passportCall } from '../../middlewares/passport.middleware.js'
+import { roleMiddleware } from '../../middlewares/role.middleware.js'
 
 const router = Router()
 
-const productMongoService = new ProductManagerMongo()
-const cartMongoService = new CartManagerMongo()
-
-router.get('/', sessionMiddleware, (req, res) => {
+router.get('/', (req, res) => {
     res.redirect('/login')
 })
 
-router.get('/register', sessionMiddleware, (req, res) => {
-    res.render('register', {
-        title: 'Sing Up!',
-        styles: 'register.css'
-    })
-})
+router.get('/register',
+    sessionMiddleware,
+    ViewsController.register
+)
 
-router.get('/login', sessionMiddleware, (req, res) => {
-    res.render('login', {
-        title: 'Login',
-        styles: 'login.css'
-    })
-})
+router.get('/login',
+    sessionMiddleware,
+    ViewsController.login
+)
 
-router.get('/products', authMiddleware, async (req, res) => {
-    try {
-        const user = req.session.user
-        const products = await productMongoService.getProducts(req.query)
-        res.render('index', {
-            title: "E-commerce",
-            styles: "index.css",
-            products: products.docs,
-            user: user
-        })
-    } catch (error) {
-        res.status(500).send({
-            status: "error",
-            error: error.message
-        })
-    }
-})
+router.get('/login/recover',
+    sessionMiddleware,
+    ViewsController.recover
+)
 
-router.get('/cart/:cid', async (req, res) => {
-    const cartId = req.params.cid
-    try {
-        const cart = await cartMongoService.getCartById(cartId)
-        res.render('cart', {
-            title: "Cart",
-            styles: "cart.css",
-            products: cart.products,
-            cartId: cart._id
-        })
-    } catch (error) {
-        res.status(500).send({
-            status: "error",
-            error: error.message
-        })
-    }
-})
+router.get('/products',
+    authMiddleware,
+    passportCall('jwt'),
+    ViewsController.products
+)
 
-router.get('/chat', async (req, res) => {
-    const messages = await messageModel.find().lean()
-    res.render('chat', {
-        title: "Super Chat!",
-        styles: "chat.css",
-        messages
-    })
-})
+router.get('/product/:pid',
+    authMiddleware,
+    passportCall('jwt'),
+    ViewsController.productDetail
+)
 
-export default router
+router.get('/cart/:cid',
+    authMiddleware,
+    passportCall('jwt'),
+    ViewsController.cart
+)
+
+router.get('/users',
+    passportCall('jwt'),
+    roleMiddleware(['admin']),
+    ViewsController.users
+)
+
+router.get('/profile/:uid',
+    passportCall('jwt'),
+    roleMiddleware(['user', 'premium']),
+    ViewsController.profile
+)
+
+router.get('/newproduct',
+    authMiddleware,
+    passportCall('jwt'),
+    roleMiddleware(['admin', 'premium']),
+    ViewsController.newProduct
+)
+
+// router.get('/chat',
+//     authMiddleware,
+//     passportCall('jwt'),
+//     ViewsController.chat
+// )
+
+router.get('/ticket/:tid',
+    authMiddleware,
+    passportCall('jwt'),
+    ViewsController.ticket
+)
+
+router.get('/newpasswordform',
+    ViewsController.passwordForm
+)
+
+export default router;

@@ -13,12 +13,11 @@ export class UsersMongoDAO {
     }
 
     getUserByEmail = async (email) => {
-        const user = await userModel.findOne({ email })
+        const user = await userModel.findOne({ email }).lean()
         return user
     }
 
     createUser = async (payload) => {
-        console.log(payload)
         const newUser = await userModel.create(payload)
         return newUser
     }
