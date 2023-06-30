@@ -4,7 +4,7 @@
 
 .banner-container{
     height: 25rem;
-    background: linear-gradient(0deg, #1c1f1aff, #1c1f1aaa 80%, #1c1f1a33),url('/statics/assets/banner.jpg');
+    background: linear-gradient(0deg, #1c1f1aff, #1c1f1aaa 80%, #1c1f1a33),url('/statics/img/banner.webp');
     background-position: center;
     background-size: cover;
     display: flex;

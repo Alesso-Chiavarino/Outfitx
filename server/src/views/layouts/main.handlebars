@@ -9,45 +9,46 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/statics/icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/statics/icon/favicon-16x16.png">
+     <script src="https://cdn.tailwindcss.com"></script>
     <title>{{title}}</title>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a href="/" class="home-link">
-                <img src="/statics/assets/icon.png" alt="mate icon" class="icon">
-                <h2  class="brand-logo">Matete</h2>
+    <nav>
+        <div class="container h-fit flex justify-around p-5">
+            <a href="/" class="flex gap-5 items-center">
+                <img src="/statics/assets/icon.png" alt="mate icon" class="h-12">
+                <h2  class="text-xl font-extrabold">Outfitx</h2>
             </a>
-            <ul id="nav-mobile" class="btn-list">
-                <li><a href="/products" class="nav-btn">Inicio</a></li>
+            <ul id="nav-mobile" class="flex gap-5 items-center">
+                <li><a href="/products" class="nav-btn">Home</a></li>
                 {{!-- <li><a href="/chat">Chat</a></li> --}}
                 {{#if user}}
                     {{#if admin}}
                         <li>
-                            <a href="/users" class="nav-btn">Ver usuarios</a>
+                            <a href="/users" class="nav-btn">Users List</a>
                         </li>
                         {{else}}
                             <li>
-                                <a class="nav-btn" onclick="seeProfile(`{{user.id}}`)">Ver Perfil</a>
+                                <a class="nav-btn" onclick="seeProfile(`{{user.id}}`)">Account</a>
                             </li>
                     {{/if}}
                     {{#if premium}}
                         <li>
-                            <a href="/newproduct" class="nav-btn">Nuevo producto</a>
+                            <a href="/newproduct" class="nav-btn">New product</a>
                         </li>
                     {{/if}}
                     {{#if admin}}
                         <li>
-                            <a href="/newproduct" class="nav-btn">Nuevo producto</a>
+                            <a href="/newproduct" class="nav-btn">New product</a>
                         </li>
                     {{/if}}
                     {{#if cart.products.length}}
                         <li>
-                            <a class="nav-btn" onclick="seeCart(event, `{{user.cart}}`)">Carrito ({{cart.products.length}})</a>
+                            <a class="nav-btn" onclick="seeCart(event, `{{user.cart}}`)">Cart ({{cart.products.length}})</a>
                         </li>
                     {{/if}}
                     <li>
-                        <button id="logout-button" class="nav-btn">Salir</button>
+                        <button id="logout-button" class="nav-btn">Log out</button>
                     </li>
                 {{/if}}
             </ul>
