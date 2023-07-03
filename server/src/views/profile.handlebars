@@ -1,35 +1,77 @@
-<div class="profile-container">
-    <h2 class="profile-title">Tu Perfil</h2>
+<div class="h-screen">
+    <div class="container flex justify-center mx-auto">
+
+        <div class="w-2/4 bg-white shadow-lg mt-20 rounded-2xl dark:bg-gray-800">
+            <div class="flex flex-col items-center justify-center p-4 -mt-16">
+                <a href="#" class="relative block">
+                    {{#if userData.profile_pic}}
+            <img src="../../statics/profiles/{{userData.profile_pic.originalName}}" alt="profile picture"
+                class="mx-auto object-cover rounded-full h-16 w-16 " >
+            {{else}}
+            <img src="../../statics/img/profile-img.jpeg" alt="standard profile image" class="mx-auto object-cover rounded-full h-16 w-16 " >
+            {{/if}}
+                </a>
+                <p class="mt-2 text-xl font-medium text-gray-800 dark:text-white">
+                    {{userData.first_name}} {{userData.last_name}}
+                </p>
+                <p class="flex items-center text-xs text-gray-400">
+                    <svg width="10" height="10" fill="currentColor" class="w-4 h-4 mr-2" viewBox="0 0 1792 1792"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M491 1536l91-91-235-235-91 91v107h128v128h107zm523-928q0-22-22-22-10 0-17 7l-542 542q-7 7-7 17 0 22 22 22 10 0 17-7l542-542q7-7 7-17zm-54-192l416 416-832 832h-416v-416zm683 96q0 53-37 90l-166 166-416-416 166-165q36-38 90-38 53 0 91 38l235 234q37 39 37 91z">
+                        </path>
+                    </svg>
+                    {{userData.email}}
+                </p>
+                <p class="text-xs text-gray-400">
+                    Role: <strong>{{userData.role}}</strong>
+                </p>
+                <div class="flex items-center justify-between w-full gap-4 mt-8">
+                    <button type="button"
+                        class="py-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                        Change Rol
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{{!-- <div class="profile-container">
+    <h2 class="profile-title">Your Profile</h2>
     <div class="profile-card">
         <div class="profile-img-container">
             {{#if userData.profile_pic}}
-                <img src="../../statics/profiles/{{userData.profile_pic.originalName}}" alt="profile picture" class="profile-pic">
-                {{else}}
-                    <img src="../../statics/assets/user-icon.svg" alt="standard profile image" class="profile-pic">
+            <img src="../../statics/profiles/{{userData.profile_pic.originalName}}" alt="profile picture"
+                class="profile-pic">
+            {{else}}
+            <img src="../../statics/img/profile-img.jpeg" alt="standard profile image" class="profile-pic">
             {{/if}}
         </div>
         <h4>{{userData.first_name}} {{userData.last_name}}</h4>
         <p>{{userData.email}}</p>
         <p>{{userData.role}}</p>
-        <button onclick="changeRole(`{{userData._id}}`, `{{userData.status}}`)" class="change-role-btn">Cambiar Rol</button>
+        <button onclick="changeRole(`{{userData._id}}`, `{{userData.status}}`)" class="change-role-btn">Cambiar
+            Rol</button>
         {{#if userData.status}}
-            <small class="premium-tag">Estás listo para acceder a el servicio premium</small>
-            {{else}}
-                <small class="premium-tag">Para acceder a premium debes completar la carga de documentos</small>
-                <form onsubmit="sendDocumentation(event, `{{userData._id}}`)" class="documents-form">
-                    <label for="doc-select">Selecciona el documento a cargar:</label>
-                    <select name="doc" id="doc-selec">
-                        <option value="">--Escoger--</option>
-                        <option value="id">Identificación</option>
-                        <option value="address">Comprobante de domicilio</option>
-                        <option value="account_status">Comprobante de estado de cuenta</option>
-                    </select>
-                    <input type="file" name="file" id="file-input">
-                    <input type="submit">
-                </form>
+        <small class="premium-tag">Estás listo para acceder a el servicio premium</small>
+        {{else}}
+        <small class="premium-tag">Para acceder a premium debes completar la carga de documentos</small>
+        <form onsubmit="sendDocumentation(event, `{{userData._id}}`)" class="documents-form">
+            <label for="doc-select">Selecciona el documento a cargar:</label>
+            <select name="doc" id="doc-selec">
+                <option value="">--Escoger--</option>
+                <option value="id">Identificación</option>
+                <option value="address">Comprobante de domicilio</option>
+                <option value="account_status">Comprobante de estado de cuenta</option>
+            </select>
+            <input type="file" name="file" id="file-input">
+            <input type="submit">
+        </form>
         {{/if}}
     </div>
-</div>
+</div> --}}
 
 
 <script src="/statics/js/profile.js"></script>

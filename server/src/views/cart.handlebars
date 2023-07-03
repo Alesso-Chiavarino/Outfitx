@@ -1,23 +1,111 @@
-<div class="cart-container">
-    <h1 class="cart-title">Carrito</h1>
-    <div class="cart-list" id="{{cart._id}}">
-    {{#if cart.products}}
-        <button onclick="clearCart('{{cart._id}}')" class="clear-button waves-effect waves-light btn-large">Limpiar carrito</button>
-        {{#each cart.products}}
-            <div id="{{product._id}}" class="product-item">
-                <p class="product-title">{{product.title}}</p>
-                <p class="product-price">${{product.price}}</p>
-                <p class="product-amount">Cantidad: <span class="quantity-tag">{{quantity}}</span></p>
-                <p class="subtotal">Subtotal: ${{#multiply product.price quantity}}{{/multiply}}</p>
-                <button onclick="removeProduct('{{../cart._id}}','{{product._id}}')" class="remove-button waves-effect waves-light btn-small yellow darken-4">Quitar</button>
+<div class="h-screen">
+    <div class="mx-auto mt-20">
+        <div class="container max-w-3xl px-4 mx-auto sm:px-8">
+            <div class="py-8">
+                <div class="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
+                    <div class="inline-block min-w-full overflow-hidden rounded-lg shadow">
+                        {{#if cart.products}}
+                        <table class="min-w-full leading-normal">
+                            <thead>
+                                <tr>
+                                    <th scope="col"
+                                        class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                                        Product
+                                    </th>
+                                    <th scope="col"
+                                        class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                                        Quantity
+                                    </th>
+                                    <th scope="col"
+                                        class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                                        Price
+                                    </th>
+                                    <th scope="col"
+                                        class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each cart.products}}
+                                <tr id="{{product._id}}">
+                                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="#" class="relative block">
+                                                    <img alt="profil"
+                                                        src="../../statics/products/{{product.thumbnails.[0].originalName}}"
+                                                        class="mx-auto object-cover rounded-full h-10 w-10 " />
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-gray-900 whitespace-no-wrap">
+                                                    {{product.title}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                        <p class="text-gray-900 whitespace-no-wrap">
+                                            Stock: {{quantity}}
+                                        </p>
+                                    </td>
+                                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                        <p class="text-gray-900 whitespace-no-wrap">
+                                            ${{product.price}}
+                                        </p>
+                                    </td>
+                                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                        <button onclick="removeProduct('{{../cart._id}}','{{product._id}}')"
+                                            class="text-red-500 hover:text-red-800">
+                                            X
+                                        </button>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        {{/each}}
-        <button onclick="purchase('{{cart._id}}')" class="purchase-button waves-effect waves-light btn-large green darken-4">Comprar</button>
-    {{else}}
-        <p class="empty-cart">¡Todavía no has añadido ningún producto!</p>
-    {{/if}}
+            <div class="flex gap-10">
+                <button onclick="clearCart('{{cart._id}}')"
+                    class="px-4 py-2 bg-red-500 rounded-md hover:bg-red-400 text-white">Clear
+                    Cart</button>
+                <button onclick="purchase('{{cart._id}}')"
+                    class="px-4 py-2 bg-green-500 rounded-md hover:bg-green-400 text-white">Comprar</button>
+            </div>
+            {{else}}
+            <p class="empty-cart">Add some product!</p>
+            {{/if}}
+        </div>
     </div>
 </div>
+
+
+
+{{!-- <div class="cart-container">
+    <h1 class="cart-title">Cart</h1>
+    <div class="cart-list" id="{{cart._id}}">
+        {{#if cart.products}}
+        <button onclick="clearCart('{{cart._id}}')" class="clear-button waves-effect waves-light btn-large">Clear
+            Cart</button>
+        {{#each cart.products}}
+        <div id="{{product._id}}" class="product-item">
+            <p class="product-title">{{product.title}}</p>
+            <p class="product-price">${{product.price}}</p>
+            <p class="product-amount">Cantidad: <span class="quantity-tag">{{quantity}}</span></p>
+            <p class="subtotal">Subtotal: ${{#multiply product.price quantity}}{{/multiply}}</p>
+            <button onclick="removeProduct('{{../cart._id}}','{{product._id}}')"
+                class="remove-button waves-effect waves-light btn-small yellow darken-4">Quitar</button>
+        </div>
+        {{/each}}
+        <button onclick="purchase('{{cart._id}}')"
+            class="purchase-button waves-effect waves-light btn-large green darken-4">Comprar</button>
+        {{else}}
+        <p class="empty-cart">¡Todavía no has añadido ningún producto!</p>
+        {{/if}}
+    </div>
+</div> --}}
 
 
 
