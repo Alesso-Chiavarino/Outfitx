@@ -36,11 +36,12 @@ class ProductsController {
 
         const payload = req.body
         const { files } = req
+        const owner = req.user.email
 
         try {
-            const newProduct = await productsService.createProduct(payload, files)
+            const newProduct = await productsService.createProduct(payload, files, owner)
             const response = successResponse(newProduct)
-            req.logger.info('Product created successfully')
+            req.logger.info(`Product[${payload.title}] created successfully`)
             res.status(HTTP_STATUS.CREATED).json(response)
 
         } catch (err) {

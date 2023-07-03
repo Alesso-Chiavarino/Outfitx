@@ -14,7 +14,6 @@ export class AddTicketDTO {
         this.purchaser = purchaser.email
         this.amount = amount
         this.purchase_datetime = new Date()
-        //UUID =>
-        this.code = `${Math.floor(Math.random()*1e10)}`
+        this.code = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
     }
 }

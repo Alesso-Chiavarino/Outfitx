@@ -3,6 +3,7 @@ import { GetProductDTO } from "../models/dtos/products.dto.js";
 import { HttpError, HTTP_STATUS } from "../utils/api.utils.js";
 import { validateProduct } from "../utils/validator.js";
 import { AddProductDTO, UpdateProductDTO } from "../models/dtos/products.dto.js";
+import { v4 as uuid } from 'uuid'
 
 const { productsDao } = getDaos()
 
@@ -69,13 +70,13 @@ export class ProductsService {
         return productPayloadDto
     }
 
-    async createProduct(payload, files) {
-
+    async createProduct(payload, files, owner) {
         validateProduct(payload)
+        payload.code = uuid()
+        const productPayloadDTO = new AddProductDTO(payload, files, owner)
+        const newProduct = productsDao.createProduct(productPayloadDTO)
 
-        const productPayloadDto = new AddProductDTO(payload, files)
-
-        const newProduct = await productsDao.createProduct(productPayloadDto)
+        // const newProduct = await productsDao.createProduct(productPayloadDto)
 
         return newProduct
 

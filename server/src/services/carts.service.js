@@ -36,36 +36,55 @@ export class CartsService {
         return deletedCart
     }
 
-    async addToCart(id, productId, amount) {
-        if (!id) {
-            throw new HttpError('Missing id', HTTP_STATUS.BAD_REQUEST)
+    async addToCart(cid, pid, amount, user) {
+        if (!cid || !pid || !amount) {
+            throw new HttpError('Missing required params', HTTP_STATUS.BAD_REQUEST)
         }
-
-        const cart = await cartsDao.getCartById(id)
-
+        const cart = await cartsDao.getCartById(cid)
         if (!cart) {
             throw new HttpError('Cart not found', HTTP_STATUS.NOT_FOUND)
         }
-
-        const product = await productsDao.getProductById(productId)
-
+        const product = await productsDao.getProductById(pid)
         if (!product) {
             throw new HttpError('Product not found', HTTP_STATUS.NOT_FOUND)
         }
+        if (product.stock < amount) {
+            throw new HttpError('Insufficient stock for selected product', HTTP_STATUS.BAD_REQUEST)
+        }
+        if (product.owner === user.email) {
+            throw new HttpError('Can not add own products', HTTP_STATUS.FORBIDDEN)
+        }
+        const existingProduct = cart.products.find(item => item.product.code === product.code)
+        const existingProductIndex = cart.products.findIndex(item => item.product.code === product.code)
+        let addedProduct
+        if (existingProduct) {
+            cart.products[existingProductIndex].quantity += amount
+            addedProduct = await cartsDao.updateCart(cid, cart.products)
+        } else {
+            addedProduct = await cartsDao.addToCart(cid, pid, amount)
+        }
+        return addedProduct
+    }
 
-        const updatedCart = await cartsDao.addToCart(id, productId, amount)
+    async removeFromCart(cid, productId) {
+        if (!cid) {
+            throw new HttpError('Missing id', HTTP_STATUS.BAD_REQUEST)
+        }
+
+        const updatedCart = await cartsDao.removeFromCart(cid, productId)
 
         return updatedCart
     }
 
-    async removeFromCart(id, productId) {
-        if (!id) {
-            throw new HttpError('Missing id', HTTP_STATUS.BAD_REQUEST)
+    async updateCart(cid, products){
+        if(!cid){
+            throw new HttpError('Missing param', HTTP_STATUS.BAD_REQUEST)
         }
-
-        const updatedCart = await cartsDao.removeFromCart(id, productId)
-
-        return updatedCart
+        if(!products.length){
+            throw new HttpError('Provide a cart payload, must be an array of products', HTTP_STATUS.BAD_REQUEST)
+        }
+        const cart = await cartsDao.updateCart(cid, products)
+        return cart
     }
 
     async clearCart(id) {

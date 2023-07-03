@@ -12,7 +12,12 @@ export class ProductsMongoDAO {
     }
 
     async createProduct(payload) {
-        const newProduct = await productModel.create(payload)
+        await productModel.create(payload)
+        const newProduct = {
+            status: payload.status || true,
+            thumbnails: payload.thumbnails || [],
+            ...payload
+        }
         return newProduct
     }
 

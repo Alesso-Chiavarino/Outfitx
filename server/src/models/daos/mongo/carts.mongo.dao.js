@@ -7,7 +7,7 @@ export class CartsMongoDAO {
     }
 
     async getCartById(id) {
-        const cart = await cartModel.findById(id)
+        const cart = await cartModel.findById(id).lean()
         return cart
     }
 
@@ -17,27 +17,24 @@ export class CartsMongoDAO {
     }
 
     async addToCart(id, pid, amount) {
-        const updatedCart = await cartModel.updateOne({ _id: id }, {
+        const updatedCart = await cartModel.findByIdAndUpdate(id, {
             $push: {
                 products: {
-                    _id: pid,
+                    product: pid,
                     quantity: amount
-                }
-            },
-        }, { new: true })
-
-        return updatedCart
-    }
-
-    async removeFromCart(id, pid) {
-        const updatedCart = cartModel.updateOne({ _id: id }, {
-            $pull: {
-                products: {
-                    _id: pid
                 }
             }
         }, { new: true })
+        return updatedCart
+    }
 
+    async removeFromCart(cid, pid) {
+        const cart = cartModel.updateOne({ _id: cid }, { $pull: { products: { product: { _id: pid } } } })
+        return cart
+    }
+
+    async updateCart(cid, products){
+        const updatedCart = await cartModel.findByIdAndUpdate(cid, { products })
         return updatedCart
     }
 

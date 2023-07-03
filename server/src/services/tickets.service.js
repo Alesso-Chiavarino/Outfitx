@@ -6,9 +6,9 @@ import { LogColors } from "../utils/console.utils.js"
 
 const { ticketsDao, cartsDao, productsDao } = getDaos()
 
-export class TicketsService {
+class TicketsService {
     async getTickets() {
-        const tickets = await ticketsDao.getAll()
+        const tickets = await ticketsDao.getTickets()
         const ticketsPayloadDTO = []
         tickets.forEach(ticket => {
             ticketsPayloadDTO.push(new GetTicketDTO(ticket))
@@ -16,11 +16,13 @@ export class TicketsService {
         return ticketsPayloadDTO
     }
 
+    //CAMBIARRRR
+
     async getTicketById(tid) {
         if (!tid) {
             throw new HttpError('Missing param', HTTP_STATUS.BAD_REQUEST)
         }
-        const ticket = await ticketsDao.getById(tid)
+        const ticket = await ticketsDao.getTicketById(tid)
         if (!ticket) {
             throw new HttpError('Ticket not found', HTTP_STATUS.NOT_FOUND)
         }
@@ -32,7 +34,7 @@ export class TicketsService {
         if (!cid) {
             throw new HttpError('Missing param', HTTP_STATUS.BAD_REQUEST)
         }
-        const cart = await cartsDao.getById(cid)
+        const cart = await cartsDao.getCartById(cid)
         if (!cart) {
             throw new HttpError('Cart not found', HTTP_STATUS.NOT_FOUND)
         }
@@ -50,14 +52,14 @@ export class TicketsService {
             } else {
                 ticketProducts.push(item)
                 totalPrice += item.quantity * item.product.price
-                await cartsDao.deleteProductFromCart(cid, item.product._id)
+                await cartsDao.removeFromCart(cid, item.product._id)
                 const updateProductPayload = {}
                 updateProductPayload.stock = item.product.stock - item.quantity
                 if (updateProductPayload.stock === 0) {
                     updateProductPayload.status = false
                 }
                 const productPayloadDTO = new UpdateProductDTO(updateProductPayload)
-                await productsDao.updateById(item.product._id, productPayloadDTO)
+                await productsDao.updateProductById(item.product._id, productPayloadDTO)
                 LogColors.logYellow(`Item ${item.product.title} deleted from cart: ${cid}`);
             }
         })
@@ -65,7 +67,7 @@ export class TicketsService {
             throw new HttpError('Not enough stock for purchase any product', HTTP_STATUS.BAD_REQUEST)
         }
         const ticketPayloadDTO = new AddTicketDTO(purchaser, totalPrice, ticketProducts)
-        const newTicket = await ticketsDao.create(ticketPayloadDTO)
+        const newTicket = await ticketsDao.createTicket(ticketPayloadDTO)
         return { newTicket, abortedProducts }
     }
 
@@ -73,11 +75,11 @@ export class TicketsService {
         if (!tid || !payload || !Object.keys(payload).length) {
             throw HttpError('Please provide an id and a payload for the ticket', HTTP_STATUS.BAD_REQUEST)
         }
-        const ticket = await ticketsDao.getById(tid)
+        const ticket = await ticketsDao.getTicketById(tid)
         if (!ticket) {
             throw new HttpError('Ticket not found', HTTP_STATUS.NOT_FOUND)
         }
-        const updatedTicket = await ticketsDao.updateById(tid, payload)
+        const updatedTicket = await ticketsDao.updateTicketById(tid, payload)
         return updatedTicket
     }
 
@@ -85,7 +87,9 @@ export class TicketsService {
         if (!tid) {
             throw HttpError('Please specify a ticket ID', HTTP_STATUS.BAD_REQUEST)
         }
-        const deletedTicket = await ticketsDao.delete(tid)
+        const deletedTicket = await ticketsDao.deleteTicket(tid)
         return deletedTicket
     }
 }
+
+export default TicketsService

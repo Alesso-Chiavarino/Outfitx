@@ -1,42 +1,76 @@
 <div class="banner-container">
-    <h2 class="banner-info_1">Los mejores productos de nuestra tierra</h2>
-    <h3 class="banner-info_2">Al mejor precio del mercado</h3>
-    {{!-- <img class="banner-img" src="/statics/assets/banner.jpg" alt="yerba mate"> --}}
+    <h2 class="banner-info_1">Outfitx</h2>
+    <h3 class="banner-info_2">The ultimate destination for fashion-forward clothing.</h3>
 </div>
-<div class="index-container">
-    <div class="filter-container">
-        <button class="filter-btn todo" onclick="filterResults(event, null)">Todo</button>
-        <button class="filter-btn mates" onclick="filterResults(event, 'mate')">Mates</button>
-        <button class="filter-btn termos" onclick="filterResults(event, 'termo')">Termos</button>
-        <button class="filter-btn bombillas" onclick="filterResults(event, 'bombilla')">Bombillas</button>
-    </div>
-    <h3 class="amount-tag">{{products.totalDocs}} resultados</h3>
-    <div id="product-list-container">
-        {{#each products.docs}}
-            <a class="product-item" id={{id}} onclick="seeProduct(event, `{{id}}`)">
-                {{#if thumbnails}}
-                    <div class="thumbnail-container">
-                        <img src="../../statics/products/{{thumbnails.[0].originalName}}" alt="">
+<div class="index-container mx-auto items-center flex flex-col container my-10">
+
+    <h1 class="font-bold text-3xl mb-10">Our Products</h1>
+    
+    <section class="flex gap-10">
+        <div class="w-1/4 bg-gray-100 rounded-md p-5 h-fit">
+            <h3 class="font-bold mb-2">Categories</h3>
+            <div class="flex gap-5 flex-col   ">
+                <button class="border-transparent border-b-2 hover:border-[#3d3d3d]"
+                    onclick="filterResults(event, null)">Todo</button>
+                <button class="border-transparent border-b-2 hover:border-[#3d3d3d]"
+                    onclick="filterResults(event, 'remeras')">Remeras</button>
+                <button class="border-transparent border-b-2 hover:border-[#3d3d3d]"
+                    onclick="filterResults(event, 'pantalones')">Pantalones</button>
+                <button class="border-transparent border-b-2 hover:border-[#3d3d3d]"
+                    onclick="filterResults(event, 'calzados')">Calzado</button>
+            </div>
+        </div>
+        <div class="flex flex-col">
+            <h3 class="font-semibold">({{products.totalDocs}}) results</h3>
+            <div class="grid grid-cols-3 gap-5">
+                {{#each products.docs}}
+
+                <article class="flex items-center justify-center cursor-pointer" id={{id}}
+                    onclick="seeProduct(event, `{{id}}`)">
+                    <div class="w-full">
+                        <div class="flex flex-col justify-center p-10 bg-white rounded-lg shadow-2xl card">
+                            <div class="prod-title">
+                                <p class="text-2xl font-bold text-gray-900 uppercase">
+                                    {{title}}
+                                </p>
+                                <p class="text-sm text-gray-400 uppercase">
+                                    {{description}}
+                                </p>
+                            </div>
+                            <div class="prod-img">
+                                <img src="../../statics/products/{{thumbnails.[0].originalName}}" alt="{{title}}"
+                                    class="object-cover object-center h-[200px]" />
+                            </div>
+                            <div class="grid gap-10 prod-info">
+                                <div>
+                                </div>
+                                <div class="flex flex-col items-center justify-between text-gray-900 md:flex-row">
+                                    <p class="text-xl font-bold">
+                                        ${{price}}
+                                    </p>
+                                    <button
+                                        class="px-2 py-2 uppercase transition duration-200 ease-in border-2 border-gray-900 rounded-full hover:bg-gray-800 hover:text-white focus:outline-none">
+                                        See more
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    {{else}}
-                        <p id="no-image">no image</p>
-                {{/if}}
-                <p id="item-title">{{title}}</p>
-                <p class="price-tag">${{price}}</p>
-                <p class="item-description">{{description}}</p>
-            </a>
-        {{/each}}
-    </div>
+                </article>
+                {{/each}}
+            </div>
+        </div>
+    </section>
     <div class="pag-btn-container">
         {{#if products.hasPrevPage}}
-            <a href={{products.prevLink}} class="pagLink">Anterior</a>
-            {{else}}
-            <p class="pagLink disabled" disabled>Anterior</p>
+        <a href={{products.prevLink}} class="pagLink">Anterior</a>
+        {{else}}
+        <p class="pagLink disabled" disabled>Anterior</p>
         {{/if}}
         {{#if products.hasNextPage}}
-            <a href={{products.nextLink}} class="pagLink">Siguiente</a>
-            {{else}}
-            <p class="pagLink disabled" disabled>Siguiente</p>
+        <a href={{products.nextLink}} class="pagLink">Siguiente</a>
+        {{else}}
+        <p class="pagLink disabled" disabled>Siguiente</p>
         {{/if}}
     </div>
 </div>

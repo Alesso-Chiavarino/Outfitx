@@ -1,13 +1,13 @@
 export class AddProductDTO {
 
-    constructor(payload, files) {
+    constructor(payload, files, owner) {
 
-        const { title, description, code, price, stock, category, _id } = payload
-
+        const { title, description, price, stock, category, _id } = payload
+//CAMBIARRR 
         this._id = _id
         this.title = title
         this.description = description
-        this.code = code
+        this.code = payload.code
         this.price = price
         this.stock = stock
         this.category = category
@@ -23,6 +23,7 @@ export class AddProductDTO {
         } else {
             this.thumbnails = []
         }
+        this.owner = owner
     }
 }
 

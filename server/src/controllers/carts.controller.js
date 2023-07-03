@@ -1,7 +1,9 @@
 import { CartsService } from "../services/carts.service.js"
 import { successResponse, HTTP_STATUS } from "../utils/api.utils.js"
+import TicketsService from "../services/tickets.service.js"
 
 const cartsService = new CartsService()
+const ticketsService = new TicketsService()
 
 export class CartsController {
     static async getCarts(req, res, next) {
@@ -56,13 +58,38 @@ export class CartsController {
     }
 
     static async addToCart(req, res, next) {
+        // const { id, pid } = req.params
+        // const amount = +req.body?.amount || 1
+
+        // try {
+        //     const updatedCart = await cartsService.addToCart(id, pid, amount)
+        //     const response = successResponse(updatedCart)
+        //     req.logger.info('Product added to cart successfully')
+        //     res.status(HTTP_STATUS.OK).json(response)
+
+        // } catch (err) {
+        //     next(err)
+        // }
         const { id, pid } = req.params
-        const amount = +req.body?.amount || 1
+        const { user } = req
+        try {
+            const amount = +req.body?.amount || 1
+            const addedProduct = await cartsService.addToCart(id, pid, amount, user)
+            req.logger.info(`product ${pid} added to cart ${id}`)
+            const response = successResponse(addedProduct)
+            res.status(HTTP_STATUS.OK).json(response)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    static async removeFromCart(req, res, next) {
+        const { cid, pid } = req.params
 
         try {
-            const updatedCart = await cartsService.addToCart(id, pid, amount)
+            const updatedCart = await cartsService.removeFromCart(cid, pid)
             const response = successResponse(updatedCart)
-            req.logger.info('Product added to cart successfully')
+            req.logger.info('Product removed from cart successfully')
             res.status(HTTP_STATUS.OK).json(response)
 
         } catch (err) {
@@ -70,17 +97,16 @@ export class CartsController {
         }
     }
 
-    static async removeFromCart(req, res, next) {
-        const { id, pid } = req.params
-
+    static async updateCart(req, res, next){
+        const { cid } = req.params
+        const payload = req.body
         try {
-            const updatedCart = await cartsService.removeFromCart(id, pid)
+            const updatedCart = await cartsService.updateCart(cid, payload)
             const response = successResponse(updatedCart)
-            req.logger.info('Product removed from cart successfully')
+            req.logger.info(`cart ${cid} updated`)
             res.status(HTTP_STATUS.OK).json(response)
-
-        } catch (err) {
-            next(err)
+        } catch (error) {
+            next(error)
         }
     }
 
@@ -95,6 +121,19 @@ export class CartsController {
 
         } catch (err) {
             next(err)
+        }
+    }
+
+    static async purchase(req, res, next){
+        const purchaser = req.user
+        const { cid } = req.params
+        try {
+            const ticket = await ticketsService.createTicket(cid, purchaser)
+            req.logger.info(`Successful purchase`)
+            const response = successResponse(ticket)
+            res.status(HTTP_STATUS.OK).json(response)
+        } catch (error) {
+            next(error)
         }
     }
 }

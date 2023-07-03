@@ -1,7 +1,7 @@
 import { getDaos } from '../models/daos/factory.js'
 import { CartsService } from '../services/carts.service.js'
 import { ProductsService } from '../services/products.service.js'
-import { TicketsService } from '../services/tickets.service.js'
+import TicketsService from '../services/tickets.service.js'
 import { UsersService } from '../services/users.service.js'
 
 const { ticketsDao } = getDaos()

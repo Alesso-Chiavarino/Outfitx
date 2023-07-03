@@ -5,7 +5,7 @@ const filterResults = async(event, filter) => {
         window.location.href = '/products'
     }
 }
-
+//CAMBIARR
 const seeProduct = async (event, pid) => {
     window.location.href = '/product/' + pid
 }

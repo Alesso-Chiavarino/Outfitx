@@ -81,3 +81,22 @@
 {"level":"error","message":"There was an unknown error"}
 {"level":"error","message":"Error getting user: MongoServerError: E11000 duplicate key error collection: outfitx.users index: github_login_1 dup key: { github_login: null }"}
 {"level":"error","message":"There was an unknown error"}
+{"level":"error","message":"Missing required params"}
+{"level":"error","message":"Missing required params"}
+{"level":"error","message":"Missing required params"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'email')"}
+{"level":"error","message":"cartsDao.addProductToCart is not a function"}
+{"level":"error","message":"cartsDao.updateCart is not a function"}
+{"level":"error","message":"cid is not defined"}
+{"level":"error","message":"cid is not defined"}
+{"level":"error","message":"cid is not defined"}
+{"level":"error","message":"Missing id"}
+{"level":"error","message":"cid is not defined"}
+{"level":"error","message":"cartsDao.getById is not a function"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'createTicket')"}
+{"level":"error","message":"Unexpected field"}
+{"level":"error","message":"code is required"}
+{"level":"error","message":"products validation failed: code: Path `code` is required."}
+{"level":"error","message":"products validation failed: code: Path `code` is required."}
+{"level":"error","message":"products validation failed: code: Path `code` is required."}
+{"level":"error","message":"Unexpected field"}

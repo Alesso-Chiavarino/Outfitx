@@ -1,14 +1,6 @@
-const logoutButton = document.getElementById('logout-button')
+const logoutBtn = document.getElementById('logout-btn')
 
-logoutButton?.addEventListener('click', ()=>{
+logoutBtn?.addEventListener('click', ()=>{
     fetch('/api/session/logout')
     .then(() => window.location.href = '/')
 })
-
-const seeProfile = (uid) =>{
-    window.location.href = `/profile/${uid}`
-}
-
-const seeCart = async (event, cid) =>{
-    window.location.href = `/cart/${cid}`
-}

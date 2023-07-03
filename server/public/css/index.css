@@ -88,14 +88,6 @@
     background-position: center;
 }
 
-#product-list-container{
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 5rem;
-}
-
 .amount-tag{
     text-align: center;
     color: #fff;
