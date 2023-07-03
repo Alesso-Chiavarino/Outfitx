@@ -6,8 +6,23 @@ const removeProduct = async (cid, pid) => {
         await fetch(`/api/carts/${cid}/product/${pid}`, {
             method: 'DELETE'
         })
-        alert('Producto eliminado del carrito')
-        window.location.href = window.location.href
+        // alert('Producto eliminado del carrito')
+        Toastify({
+            text: "This is a dick",
+            duration: 3000,
+            destination: '#',
+            newWindow: true,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+            },
+            onClick: function () {
+                window.location.reload()
+            } // Callback after click
+        }).showToast();
     } catch (err) {
         console.log(err)
     }

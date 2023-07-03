@@ -1,13 +1,23 @@
-<div class="recover-container">
-    <h2 class="recover-title">Recuperar contraseña</h2>
-    <div class="recover-form-container">
-        <h3>Ingresá tu dirección de correo</h3>
-        <form class="" action="/api/mail" method="post" class="recover-form">
-            <div class="input-field">
-                <label for="email">Email</label>
-                <input type="email" class="validate" name="email">
+<div class="h-screen">
+    <div class="container mx-auto flex justify-center">
+        <div class="w-2/4">
+            <h2 class="font-bold text-3xl my-5">Recover password</h2>
+            <div class="mt-10">
+                <h3 class="text-left my-2">Insert your email</h3>
+                <form action="/api/mail" method="post" class="recover-form">
+                    <div class="w-full relative">
+                        <label for="name-with-label" class="text-gray-700">
+                            Email
+                        </label>
+                        <input type="text" name="email"
+                            class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                            name="email" placeholder="Your name" />
+                    </div>
+                    <input
+                        class="bg-slate-900 hover:bg-slate-700 cursor-pointer w-full text-white font-bold rounded-md px-4 py-2"
+                        type="submit" value="Send">
+                </form>
             </div>
-            <input class="recover-submit" type="submit" value="Enviar correo">
-        </form>
+        </div>
     </div>
 </div>
