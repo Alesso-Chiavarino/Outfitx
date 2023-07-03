@@ -1,36 +1,65 @@
-<div class="register-container">
-    <h1 class="signup-title">Crear usuario</h1>
-    <div class="register-form-container">
-        <form class="register-form" id="register-form" enctype="multipart/form-data" onsubmit="registerUser(event)">
-            <div class="input-field">
-                <label for="first_name-input">Nombre/s</label>
-                <input type="text" class="validate" name="firstName" id="last_name-input" required>
-            </div>
-            <div class="input-field">
-                <label for="last_name-input">Apellido</label>
-                <input type="text" class="validate" name="lastName" id="last_name-input" required>
-            </div>
-            <div class="input-field">
-                <label for="email-input">Email</label>
-                <input type="email" class="validate" name="email" id="email-input" required>
-            </div>
-            <div class="input-field">
-                <label for="age-input">Edad</label>
-                <input type="number" class="validate" name="age" min="1" max="100" id="age-input" required>
-            </div>
-            <div class="input-field">
-                <label for="password-input">Contraseña</label>
-                <input type="password" class="validate" name="password" id="password-input" required>
-            </div>
-            <div class="input-field">
-                <label for="pic-input">Escoge una foto de perfil</label>
-                <input type="file" class="validate" name="file" id="pic-input">
-            </div>
-            <input class="register-submit" type="submit" value="Crear">
-        </form>
+<div class="h-screen">
+    <div
+        class=" mx-auto flex flex-col max-w-md mt-20 px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
+        <div class="self-center mb-2 text-xl font-light text-gray-800 sm:text-2xl dark:text-white">
+            Create a new account
+        </div>
+        <span class="justify-center text-sm text-center text-gray-500 flex-items-center dark:text-gray-400">
+            Already have an account ?
+            <a href="/login" target="_blank" class="text-sm text-blue-500 underline hover:text-blue-700">
+                Sign in
+            </a>
+        </span>
+        <div class="p-6 mt-8">
+            <form id="register-form" enctype="multipart/form-data" onsubmit="registerUser(event)" id="register-form">
+                <div class="flex flex-col mb-2">
+                    <div class=" relative ">
+                        <input type="text" id="create-account-pseudo" name="firstName"
+                            class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                            name="pseudo" placeholder="First name" />
+                    </div>
+                </div>
+                <div class="flex mb-2">
+                    <input type="text" id="create-account-first-name" name="lastName"
+                        class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                        name="First name" placeholder="Last name" />
+                </div>
+                <div class="flex flex-col mb-2">
+                    <div class=" relative ">
+                        <input type="text" id="create-account-email" name="email"
+                            class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                            placeholder="Email" />
+                    </div>
+                </div>
+                <div class="flex flex-col mb-2">
+                    <div class=" relative ">
+                        <input type="number" id="create-account-age" name="age"
+                            class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                            placeholder="Age" />
+                    </div>
+                </div>
+                <div class="flex flex-col mb-2">
+                    <div class=" relative ">
+                        <input type="text" id="create-account-password" name="password"
+                            class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                            placeholder="Password" />
+                    </div>
+                </div>
+                <div class="flex flex-col mb-2">
+                    <div class=" relative ">
+                        <input type="file" id="create-account-file" name="file"
+                            class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" />
+                    </div>
+                </div>
+                <div class="flex w-full my-4">
+                    <button type="submit"
+                        class="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                        Sign up
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-    <a href="/login" class="login-anchor">¿Ya tienes una cuenta? ¡Ingresa!</a>
 </div>
-
 
 <script src="/statics/js/register.js"></script>
