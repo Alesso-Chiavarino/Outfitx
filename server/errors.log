@@ -100,3 +100,6 @@
 {"level":"error","message":"products validation failed: code: Path `code` is required."}
 {"level":"error","message":"products validation failed: code: Path `code` is required."}
 {"level":"error","message":"Unexpected field"}
+{"level":"error","message":"users validation failed: email: Path `email` is required., password: Path `password` is required."}
+{"level":"error","message":"Failed to obtain access token"}
+{"level":"error","message":"users validation failed: email: Path `email` is required., password: Path `password` is required."}
