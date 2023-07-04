@@ -56,15 +56,26 @@ const purchase = async (cid) => {
         method: 'put'
     })
         .then(response => {
-            if (response.ok) {
-                alert('Compra realizada exitosamente')
-            } else {
-                alert('Se produjo un problema al procesar su compra. Vuelva a intentarlo')
+            if (!response.ok) {
+                return Toastify({
+                    text: `Thanks for your purchase!`,
+                    duration: 3000,
+                    destination: `/products`,
+                    newWindow: false,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    }
+                }).showToast();
             }
             return response.json()
         })
         .then(response => {
-            seeTicketButton(response.data.newTicket._id)
+            const ticketId = response.data.newTicket._id
+            window.location.href = `/ticket/${ticketId}`
         })
     cartList.remove()
     showThanks()

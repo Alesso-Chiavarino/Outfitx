@@ -1,30 +1,65 @@
-<div class="ticket-container">
-    <div class="ticket-card">
-        <h1 class="ticket-title">COMPROBANTE DE COMPRA</h1>
-        <p class="ticket-purchaser">de: {{ticket.purchaser}}</p>
-        {{!-- {{#each ticket.products}}
-        <div class="product-item-ticket">
-            <p>{{product.title}}</p>
-            <p>{{quantity}}</p>
-            <p>${{product.price}}</p>
-        </div>
-        {{/each}} --}}
-        <table class="ticket-table">
-        <tr>
-            <th class="header">Producto</th>
-            <th class="header">Cantidad</th>
-            <th class="header">Precio</th>
-        </tr>
-        {{#each ticket.products}}
-        <tr>
-            <td>{{product.title}}</td>
-            <td>{{quantity}}</td>
-            <td>${{product.price}}</td>
-        </tr>
-        {{/each}}
-    </table>
-        <p class="ticket-amount">Total: ${{ticket.amount}}</p>
-        <p class="ticket-date">{{ticket.date}}</p>
-        <p class="ticket-code">código de compra: {{ticket.code}}</p>
+<section class="h-screen text-white bg-[#222222] flex">
+    <div class="mx-auto container flex h-fit justify-center pt-40">
+        <article class="flex flex-col gap-5">
+            <h3 class="font-extrabold text-3xl">Thanks <span class="text-red-500">{{name}}</span> for choosing us!</h3>
+            <p>The payment was successful!</p>
+            <p>Check the withdrawal instructions in your email: <span class="text-red-500">{{ticket.purchaser}}</span>
+            </p>
+            <p>You paid <span class="font-semibold">${{ticket.amount}}</span></p>
+            <p>The purchase code is <span class="text-red-500">{{ticket.code}}</span></p>
+            <hr>
+            <span>More details:</span>
+            <table class="min-w-full leading-normal">
+                <thead>
+                    <tr>
+                        <th scope="col"
+                            class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                            Product
+                        </th>
+                        <th scope="col"
+                            class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                            Quantity
+                        </th>
+                        <th scope="col"
+                            class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                            Price
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each ticket.products}}
+                    <tr id="{{product._id}}">
+                        <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <a href="#" class="relative block">
+                                        <img alt="profil"
+                                            src="../../statics/products/{{product.thumbnails.[0].originalName}}"
+                                            class="mx-auto object-cover rounded-full h-10 w-10 " />
+                                    </a>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        {{product.title}}
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                                Stock: {{quantity}}
+                            </p>
+                        </td>
+                        <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                                ${{product.price}}
+                            </p>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <p class="text-lg font-bold">Total: ${{ticket.amount}}</p>
+        </article>
     </div>
-</div>
+</section>

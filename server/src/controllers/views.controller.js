@@ -171,11 +171,13 @@ export class ViewsController {
     static async ticket(req, res, next) {
         const { user } = req
         const { tid } = req.params
+        const name = user.firstName + ' ' + user.lastName
         try {
             const ticket = await ticketsService.getTicketById(tid)
             res.render('ticket', {
                 title: "Purchase Ticket",
                 styles: "ticket.css",
+                name,
                 ticket,
                 user
             })
