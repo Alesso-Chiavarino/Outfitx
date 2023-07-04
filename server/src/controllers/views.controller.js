@@ -15,7 +15,7 @@ export class ViewsController {
 
     static async register(req, res, next) {
         res.render('register', {
-            title: 'Sign Up!',
+            title: 'Sign Up',
             styles: 'register.css'
         })
     }
@@ -48,7 +48,7 @@ export class ViewsController {
             }
             const premium = user.role === 'premium'
             res.render('index', {
-                title: "E-commerce",
+                title: "Outfitx",
                 styles: "index.css",
                 products,
                 user,
@@ -109,7 +109,7 @@ export class ViewsController {
             const usersList = await usersService.getUsers()
             const usersQuantity = usersList.length
             res.render('users', {
-                title: "Usuarios",
+                title: "Users",
                 styles: "users.css",
                 usersList,
                 usersQuantity,
@@ -129,7 +129,7 @@ export class ViewsController {
         try {
             const userData = await usersService.getUserById(uid)
             res.render('profile', {
-                title: "Perfil",
+                title: "Profile",
                 styles: "profile.css",
                 user,
                 userData
@@ -144,7 +144,7 @@ export class ViewsController {
         try {
             const admin = user.role === 'admin'
             res.render('newProduct', {
-                title: "Crear Producto",
+                title: "Create product",
                 styles: "newproduct.css",
                 user,
                 admin
@@ -154,19 +154,6 @@ export class ViewsController {
         }
 
     }
-
-    // static async chat(req, res, next) {
-    //     try {
-    //         const messages = await chatsDao.getAll()
-    //         res.render('chat', {
-    //             title: "Super Chat!",
-    //             styles: "chat.css",
-    //             messages
-    //         })
-    //     } catch (error) {
-    //         next(error)
-    //     }
-    // }
 
     static async ticket(req, res, next) {
         const { user } = req
