@@ -6,9 +6,8 @@ const removeProduct = async (cid, pid) => {
         await fetch(`/api/carts/${cid}/product/${pid}`, {
             method: 'DELETE'
         })
-        // alert('Producto eliminado del carrito')
         Toastify({
-            text: "This is a dick",
+            text: "Product removed from cart",
             duration: 3000,
             destination: '#',
             newWindow: true,
@@ -19,9 +18,7 @@ const removeProduct = async (cid, pid) => {
             style: {
                 background: "linear-gradient(to right, #00b09b, #96c93d)",
             },
-            onClick: function () {
-                window.location.reload()
-            } // Callback after click
+            onClick: () => window.location.reload()
         }).showToast();
     } catch (err) {
         console.log(err)

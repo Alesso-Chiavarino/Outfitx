@@ -107,10 +107,12 @@ export class ViewsController {
         try {
             const admin = user.role === 'admin'
             const usersList = await usersService.getUsers()
+            const usersQuantity = usersList.length
             res.render('users', {
                 title: "Usuarios",
                 styles: "users.css",
                 usersList,
+                usersQuantity,
                 user,
                 admin
             })

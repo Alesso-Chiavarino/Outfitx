@@ -1,44 +1,100 @@
-<div class="users-container">
-    <h2>Lista de usuarios</h2>
-    <table class="users-table">
-        <tr>
-            <th></th>
-            <th class="header">Email</th>
-            <th class="header">Rol</th>
-            <th class="header">Tipo de acceso</th>
-            <th class="header">Último acceso</th>
-        </tr>
-        {{#each usersList}}
-        <tr>
-            <td>
-                {{#if profile_pic}}
-                    <div class="profile-container">
-                        <img src="../../statics/profiles/{{profile_pic.originalName}}" alt="profile picture" class="profile-img">
-                    </div>
-                    {{else}}
-                        <div class="profile-container">
-                            <img src="../../statics/assets/user-icon.svg" alt="profile picture" class="profile-img">
+<section class="h-screen">
+    <div class="mx-auto container mt-20">
+        <div class="flex justify-between items-center">
+            <h2 class="text-2xl font-bold text-black mb-10">Users list</h2>
+            <span class="font-semibold">Total Users: {{usersQuantity}}</span>
+        </div>
+        <table class="min-w-full leading-normal">
+            <thead>
+                <tr>
+                    <th scope="col"
+                        class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                        Email
+                    </th>
+                    <th scope="col"
+                        class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                        Role
+                    </th>
+                    <th scope="col"
+                        class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                        Access
+                    </th>
+                    <th scope="col"
+                        class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                        Last access
+                    </th>
+                    <th scope="col"
+                        class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                    </th>
+                    <th scope="col"
+                        class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each usersList}}
+                <tr>
+                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                        <div class="flex items-center">
+                            {{#if profile_pic}}
+                            <div class="flex-shrink-0">
+                                <a href="#" class="relative block">
+                                    <img alt="profile img" src="../../public/profiles/{{profile_pic.originalName}}"
+                                        class="mx-auto object-cover rounded-full h-10 w-10 " />
+                                </a>
+                            </div>
+                            {{else}}
+                            <div class="flex-shrink-0">
+                                <a href="#" class="relative block">
+                                    <img alt="profile img" src="../../public/img/profile-img.jpeg"
+                                        class="mx-auto object-cover rounded-full h-10 w-10 " />
+                                </a>
+                            </div>
+                            {{/if}}
+                            <div class="ml-3">
+                                <p class="text-gray-900 whitespace-no-wrap">
+                                    {{email}}
+                                </p>
+                            </div>
                         </div>
-                {{/if}}
-            </td>
-            <td>{{email}}</td>
-            <td>{{role}}</td>
-            {{#if github_login}}
-                <td>github</td>
-                {{else}}
-                <td>local</td>
-            {{/if}}
-            <td>{{last_connection}}</td>
-            <td>
-                <button onclick="deleteUser(`{{_id}}`)" class="users-btn delete-user-btn">Eliminar</button>
-            </td>
-            <td>
-                <button onclick="changeRole(`{{_id}}`)" class="users-btn change-role-btn">Cambiar rol</button>
-            </td>
-        </tr>
-        {{/each}}
-    </table>
-    <button onclick="deleteInactive()" class="users-btn delete-inactive-btn">Eliminar usuarios inactivos</button>
-</div>
+                    </td>
+                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                        <p class="text-gray-900 whitespace-no-wrap">
+                            {{role}}
+                        </p>
+                    </td>
+                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                        <p class="text-gray-900 whitespace-no-wrap">
+                            {{#if github_login}}
+                            github
+                            {{else}}
+                            local
+                            {{/if}}
+                        </p>
+                    </td>
+                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                        <p class="text-gray-900 whitespace-no-wrap">
+                            {{last_connection}}
+                        </p>
+                    </td>
+                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                        <button onclick="deleteUser(`{{_id}}`)"
+                            class="text-white px-4 rounded-md py-2 bg-red-500 hover:bg-red-800">
+                            X
+                        </button>
+                    </td>
+                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                        <button onclick="changeRole(`{{_id}}`)"
+                            class="text-white bg-blue-500 px-4 rounded-md py-2 hover:bg-blue-800">
+                            Change role
+                        </button>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <button onclick="deleteInactive()" class="bg-red-500 mt-5 text-white w-full py-4 rounded-md">Delete inactive users</button>
+    </div>
+</section>
 
 <script src="/statics/js/users.js"></script>
