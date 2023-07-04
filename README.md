@@ -4,26 +4,28 @@ Outfitx is a backend project built with Express.js that provides an API for mana
 
 ## Deployment
 
+[Outfitx](outfitx.vercel.app) is deprecated.
+[Outfitx](outfitx-production.up.railway.app) is working.
+
+
 ## Environment Variables (available for the next 30 days)
 
 PORT = 8080
-DATA_SOURCE = MONGO
-MONGO_ATLAS_URI = mongodb+srv://alesso-chiavarino:TheAlexOMG14@cluster0.fesuhae.mongodb.net/outfitx?retryWrites=true&w=majority
-MONGO_ATLAS_URI_TEST = mongodb+srv://alesso-chiavarino:TheAlexOMG14@cluster0.fesuhae.mongodb.net/outfitx-test?retryWrites=true&w=majority
-MONGO_LOCAL_URI = mongodb://localhost:8181/?readPreference=primary&ssl=false&directConnection=true
-MONGO_LOCAL_URI_TEST = mongodb://localhost:8282/?readPreference=primary&ssl=false&directConnection=true
-GOOGLE_APLICATION_PASSWORD = pekeqzrdurbsmtzf
-GOOGLE_EMAIL = jorgeechiavarino@gmail.com
-TWILIO_AUTH_TOKEN = 384fa115123f377cc7cb2c4f26680171
-TWILIO_ACCOUNT_SID = AC4094ef8e7bf1083e15103f55133cfbf4
-TWILIO_PHONE_NUMBER = +12545565939
-SECRET_KEY = top-secret-51
-SESSION_KEY = outfitx
-ADMIN_NAME = alesso-chiavarino
-ADMIN_PASSWORD = TheAlexOMG14
-GITHUB_CLIENT_ID = Iv1.5afbf0afdffa0ec5
-GITHUB_CLIENT_SECRET = e62efbc2956da2cf0c25b1b43d2e412d5e68fff3
-GITHUB_CALLBACK_URL = http://localhost:8080/api/session/github/callback
+DATA_SOURCE = MONGO # OPTIONS: MONGO - FILE
+MONGO_ATLAS_URI = URI OF MONGODB ATLAS
+MONGO_LOCAL_URI = URI OF MONGODB LOCAL
+GOOGLE_APLICATION_PASSWORD = PASSWORD OF GOOGLE APLICATION
+GOOGLE_EMAIL = EMAIL OF GOOGLE ACCOUNT
+TWILIO_AUTH_TOKEN = AUTH TOKEN OF TWILIO
+TWILIO_ACCOUNT_SID = ACCOUNT SID OF TWILIO
+TWILIO_PHONE_NUMBER = PHONE NUMBER OF TWILIO
+SECRET_KEY = KEY OF TOKEN
+SESSION_KEY = KEY OF SESSION
+ADMIN_NAME = THE NAME OF ADMIN
+ADMIN_PASSWORD = THE PASSWORD OF ADMIN
+GITHUB_CLIENT_ID = CLIENT ID OF GITHUB
+GITHUB_CLIENT_SECRET = CLIENT SECRET OF GITHUB
+GITHUB_CALLBACK_URL = CALLBACK URL OF GITHUB
 
 ## Technologies Used
 
