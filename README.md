@@ -4,8 +4,8 @@ Outfitx is a backend project built with Express.js that provides an API for mana
 
 ## Deployment
 
-[Outfitx](outfitx.vercel.app) is deprecated.
-[Outfitx](outfitx-production.up.railway.app) is working.
+https://outfitx.vercel.app/login => is deprecated.
+https://outfitx-production.up.railway.app/login => is working.
 
 
 ## Environment Variables (available for the next 30 days)
