@@ -67,10 +67,36 @@ const deleteItem = (pid) => {
     })
         .then(response => {
             if (response.ok) {
-                alert('producto eliminado exitosamente')
+                Toastify({
+                    text: "Product deleted successfully",
+                    duration: 3000,
+                    destination: '#',
+                    newWindow: false,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    },
+                    onClose: () => window.location.reload()
+                }).showToast();
                 window.location = '/'
             } else {
-                alert("No se pudo eliminar el producto, vuelva a intentar")
+                Toastify({
+                    text: "Can't delete product",
+                    duration: 3000,
+                    destination: '#',
+                    newWindow: false,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    },
+                    onClose: () => window.location.reload()
+                }).showToast();
             }
 
         })

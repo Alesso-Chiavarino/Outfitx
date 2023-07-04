@@ -63,14 +63,14 @@
     </section>
     <div class="pag-btn-container">
         {{#if products.hasPrevPage}}
-        <a href={{products.prevLink}} class="pagLink">Anterior</a>
+        <a href={{products.prevLink}} class="pagLink">Prev</a>
         {{else}}
-        <p class="pagLink disabled" disabled>Anterior</p>
+        <p class="pagLink disabled" disabled>Prev</p>
         {{/if}}
         {{#if products.hasNextPage}}
-        <a href={{products.nextLink}} class="pagLink">Siguiente</a>
+        <a href={{products.nextLink}} class="pagLink">Next</a>
         {{else}}
-        <p class="pagLink disabled" disabled>Siguiente</p>
+        <p class="pagLink disabled" disabled>Next</p>
         {{/if}}
     </div>
 </div>

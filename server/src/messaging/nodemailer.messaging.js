@@ -22,17 +22,18 @@ const html = `
     <p>Oder num: {NUM OF ORDER}</p>
 `
 
-const sendMail = async (to, subject, html) => {
+export const sendMail = async (to, subject, html) => {
 
     const info = await transporter.sendMail({
         from: EMAIL,
         to,
         subject,
-        html
+        html,
+        attachments: []
     })
 
     console.log(info)
 
 }
 
-sendMail('alessochiavarino@gmail.com', 'test', html)
+// sendMail('alessochiavarino@gmail.com', 'test', html)

@@ -15,3 +15,8 @@ export const cookieExtractor = (req) => {
     }
     return token
 }
+
+export const generateRecoveringToken = (email) => {
+    const recoverToken = jwt.sign({ email }, SECRET_KEY, { expiresIn: '1h' });
+    return recoverToken
+};

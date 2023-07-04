@@ -1,13 +1,13 @@
 const form = document.getElementById('new-password-form')
 
-const showError = (messsage) =>{
+const showError = (messsage) => {
     const errorTag = document.createElement('div');
     errorTag.classList.add('error-message');
     errorTag.textContent = messsage;
     form.parentElement.parentElement.appendChild(errorTag)
 }
 
-const showRedirectButton = () =>{
+const showRedirectButton = () => {
     const redirectButton = document.createElement('button')
     redirectButton.innerHTML = `
     <a href='/login/recover'>Nuevo correo</a>
@@ -24,22 +24,35 @@ form.addEventListener('submit', (event) => {
         body: payload
     }
     fetch('/api/users/generatenewpassword', requestOptions)
-    .then(response => {
-        switch (response.status) {
-            case 200:
-                alert("la contraseña se cambió con éxito");
-                window.location = '/'
-                break;
-            case 400:
-                showError('La contraseña no puede ser idéntica a la anterior. Por favor, escoga una nueva.')
-                break;
-            case 403:
-                showError('El token ha expirado, haga click abajo para mandar un nuevo correo')
-                showRedirectButton()
-                break;
-            default:
-                break;
-        }
-    })
-    .catch(error => console.log(error))
+        .then(response => {
+            switch (response.status) {
+                case 200:
+                    Toastify({
+                        text: "Password changed successfully",
+                        duration: 3000,
+                        destination: '/users',
+                        newWindow: false,
+                        close: true,
+                        gravity: "top", // `top` or `bottom`
+                        position: "right", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        style: {
+                            background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        },
+                        onClose: () => window.location.reload()
+                    }).showToast();
+                    window.location = '/'
+                    break;
+                case 400:
+                    showError('The password cannot be the same as the previous one.')
+                    break;
+                case 403:
+                    showError('The token is invalid or has expired. Please try again.')
+                    showRedirectButton()
+                    break;
+                default:
+                    break;
+            }
+        })
+        .catch(error => console.log(error))
 })

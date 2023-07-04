@@ -36,6 +36,11 @@ const schema = new Schema({
     thumbnails: {
         type: [],
         default: []
+    },
+    owner: {
+        type: String, 
+        default: 'admin', 
+        required: true
     }
 })
 

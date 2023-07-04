@@ -1,33 +1,102 @@
-const deleteUser = async(id) =>{
-    fetch(`/api/users/${id}`,{
+const deleteUser = async (id) => {
+    fetch(`/api/users/${id}`, {
         method: 'DELETE'
     })
-    .then(() => alert('Usuario eliminado'))
-    .then(response => console.log(response))
+        .then(() => {
+            Toastify({
+                text: "User deleted successfully",
+                duration: 3000,
+                destination: '/users',
+                newWindow: false,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                },
+                onClose: () => window.location.reload()
+            }).showToast();
+        })
+        .then(response => console.log(response))
 }
 
-const changeRole = async(id) =>{
-    fetch(`/api/users/premium/${id}`,{
+const changeRole = async (id) => {
+    console.log(`/api/users/premium/${id}`);
+    fetch(`/api/users/premium/${id}`, {
         method: 'PUT'
     })
-    .then((response) => {
-        if(response.status === 200){
-            alert('Usuario modificado')
-        }else{
-            alert('No se puede modificar este usuario')
-        }
-    })
-}
+        .then((response) => {
+            if (response.status === 200) {
+                Toastify({
+                    text: "User modified successfully",
+                    duration: 3000,
+                    destination: '/users',
+                    newWindow: false,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    },
+                    onClose: () => window.location.reload()
+                }).showToast();
+            } else {
+                Toastify({
+                    text: "Can't modify user",
+                    duration: 3000,
+                    destination: '#',
+                    newWindow: false,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    },
+                    onClose: () => window.location.reload()
+                }).showToast();
+            }
+        });
+};
 
-const deleteInactive = async() =>{
-    fetch(`/api/users`,{
+
+const deleteInactive = async () => {
+    fetch(`/api/users`, {
         method: 'DELETE'
     })
-    .then((response) => {
-        if(response.status === 200){
-            alert('Usuarios eliminados')
-        }else{
-            alert('Ha habido un problema al eliminar usuarios')
-        }
-    })
+        .then((response) => {
+            if (response.status === 200) {
+                Toastify({
+                    text: "Users deleted successfully",
+                    duration: 3000,
+                    destination: '/users',
+                    newWindow: false,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    },
+                    onClose: () => window.location.reload()
+                }).showToast();
+            } else {
+                Toastify({
+                    text: "Can't delete users",
+                    duration: 3000,
+                    destination: '/users',
+                    newWindow: false,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    },
+                    onClose: () => window.location.reload()
+                }).showToast();
+            }
+        })
 }
