@@ -121,3 +121,4 @@
 {"level":"error","message":"users validation failed: email: Path `email` is required., password: Path `password` is required."}
 {"level":"error","message":"users validation failed: email: Path `email` is required., password: Path `password` is required."}
 {"level":"error","message":"users validation failed: email: Path `email` is required., password: Path `password` is required."}
+{"level":"error","message":"Email and password are required"}
