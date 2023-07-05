@@ -1,10 +1,11 @@
 import { getDaos } from "../models/daos/factory.js";
-import { CreateUserDTO } from "../models/dtos/users.dto.js";
 import { HttpError, HTTP_STATUS } from "../utils/api.utils.js";
-import { validateUser } from "../utils/validator.js";
 import { createHash, isValidPassword } from "../utils/bcrypt.utils.js";
+import MailsService from "./mails.service.js";
 
 const { usersDao, cartsDao } = getDaos()
+
+const mailsService = new MailsService()
 
 export class UsersService {
 
@@ -109,7 +110,7 @@ export class UsersService {
 
         let newRole = {}
 
-        switch(user.role) {
+        switch (user.role) {
             case 'user':
                 newRole.role = 'premium'
                 break
@@ -119,17 +120,11 @@ export class UsersService {
             default:
                 throw new HttpError('Role not found', HTTP_STATUS.NOT_FOUND)
         }
-        // if (user.role === 'user') {
-        //     newRole.role = 'premium'
-        // }
-        // if (user.role === 'premium') {
-        //     newRole.role = 'user'
-        // }
         const updatedUser = await usersDao.updateUserById(uid, newRole)
         return updatedUser
     }
 
-    async deleteInactive() {
+    async deleteInactiveUsers() {
         const users = await usersDao.getUsers()
         const date = new Date()
         const twoDaysMs = 2 * 24 * 60 * 60 * 1000;
@@ -139,7 +134,7 @@ export class UsersService {
             }
         })
         inactiveUsers.forEach(iUser => {
-            mailService.notifyDeletion(iUser.email, iUser.first_name)
+            mailsService.notifyDeletion(iUser.email, iUser.first_name)
             usersDao.deleteUser(iUser._id)
         })
         return inactiveUsers

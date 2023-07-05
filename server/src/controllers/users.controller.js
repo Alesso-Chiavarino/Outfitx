@@ -110,7 +110,7 @@ export class UsersController {
 
     static async deleteInactiveUsers(req, res, next) {
         try {
-            const deletedUsers = await usersService.deleteInactive()
+            const deletedUsers = await usersService.deleteInactiveUsers()
             req.logger.info('Inactive users deleted')
             const response = successResponse(deletedUsers)
             return res.status(HTTP_STATUS.OK).json(response)

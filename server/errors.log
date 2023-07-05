@@ -3,3 +3,4 @@
 {"level":"error","message":"Cannot read properties of undefined (reading 'role')"}
 {"level":"error","message":"Cannot read properties of undefined (reading 'role')"}
 {"level":"error","message":"Cannot read properties of undefined (reading 'role')"}
+{"level":"error","message":"mailService is not defined"}
