@@ -9,8 +9,8 @@ const router = Router()
 router.get('/', ProductsController.getProducts)
 router.get('/:id', ProductsController.getProduct)
 router.post('/', passportCall('jwt'), roleMiddleware(['admin', 'premium']), uploader.array('thumbnails'), ProductsController.createProduct)
-router.put('/:id', ProductsController.updateProduct)
-router.delete('/:id', ProductsController.deleteProduct)
+router.put('/:id', passportCall('jwt'), roleMiddleware(['admin', 'premium']), ProductsController.updateProduct)
+router.delete('/:id', passportCall('jwt'), roleMiddleware(['admin', 'premium']), ProductsController.deleteProduct)
 
 
 

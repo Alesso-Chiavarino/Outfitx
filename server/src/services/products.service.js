@@ -4,8 +4,14 @@ import { HttpError, HTTP_STATUS } from "../utils/api.utils.js";
 import { validateProduct } from "../utils/validator.js";
 import { AddProductDTO, UpdateProductDTO } from "../models/dtos/products.dto.js";
 import { v4 as uuid } from 'uuid'
+import ENV from "../config/env.config.js";
+import MailsService from "./mails.service.js";
+
+const { ADMIN_NAME } = ENV
 
 const { productsDao } = getDaos()
+
+const mailsService = new MailsService()
 
 export class ProductsService {
 
@@ -104,7 +110,7 @@ export class ProductsService {
 
     }
 
-    async deleteProductById(id) {
+    async deleteProductById(id, user) {
 
         if (!id) {
             throw new HttpError('Missing id', HTTP_STATUS.BAD_REQUEST)
@@ -114,6 +120,14 @@ export class ProductsService {
 
         if (!product) {
             throw new HttpError('Product not found', HTTP_STATUS.NOT_FOUND)
+        }
+
+        if (user.role === 'premium' && user.email !== product.owner) {
+            throw new HttpError("Only product owner can delete it", HTTP_STATUS.FORBIDDEN)
+        }
+
+        if (product.owner !== ADMIN_NAME) {
+            await mailsService.notifyProductDeletion(product.owner, product.title)
         }
 
         const deletedProduct = await productsDao.deleteProductById(id)

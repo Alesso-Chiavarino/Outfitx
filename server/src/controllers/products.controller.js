@@ -56,7 +56,7 @@ class ProductsController {
         try {
             const updatedProduct = await productsService.updateProductById(id, payload)
             const response = successResponse(updatedProduct)
-            req.logger.info('Product updated successfully')
+            req.logger.info(`Product [${id}] updated successfully`)
             res.status(HTTP_STATUS.OK).json(response)
 
         } catch (err) {
@@ -66,11 +66,12 @@ class ProductsController {
 
     static async deleteProduct(req, res, next) {
         const { id } = req.params
+        const { user } = req
 
         try {
-            const productToDelete = await productsService.deleteProductById(id)
+            const productToDelete = await productsService.deleteProductById(id, user)
             const response = successResponse(productToDelete)
-            req.logger.info('Product deleted successfully')
+            req.logger.info(`Product [${id}] deleted successfully`)
             res.status(HTTP_STATUS.OK).json(response)
 
         } catch (err) {

@@ -8,29 +8,28 @@
             <h1 class="text-2xl font-bold text-gray-900">
                 {{product.title}}
             </h1>
+            <hr>
             <p class="mt-2 text-sm text-gray-600">
                 {{product.description}}
             </p>
-            <p>
-                Stock: {{product.stock}}
-            </p>
-            <div class="flex justify-between flex-col mt-3 item-center">
+            <hr>
+            <div class="flex justify-between gap-5 flex-col mt-3 item-center">
                 <span class="text-xl block font-bold text-gray-700">
                     ${{product.price}}
                 </span>
                 {{#if product.status}}
                 {{/if}}
                 {{#if product.stock}}
-                <p class="text-gray-500">{{product.stock}} Available units</p>
+                <p class="text-gray-500 font-semibold">{{product.stock}} Available units</p>
                 {{#if admin}}
-                <p class="product-owner">propietario: {{product.owner}}</p>
-                <button id="delete-btn" class="delete-btn" onclick="deleteItem(`{{product.id}}`)">Remove product</button>
+                <p class="font-semibold">Owner: {{product.owner}}</p>
+                <button class="px-4 py-2 bg-red-500 rounded-md w-1/4 text-white hover:bg-red-700" onclick="deleteItem(`{{product.id}}`)">Remove product</button>
                 {{else}}
                 <div class="mt-10">
                     <div class="item-counter-container">
-                        <button class="less-button-counter" onclick="decreaseAmount(event, {{product.stock}})">-</button>
+                        <button onclick="decreaseAmount(event, {{product.stock}})">-</button>
                         <p class="counter">1</p>
-                        <button class="more-button-counter" onclick="increaseAmount(event, {{product.stock}})">+</button>
+                        <button onclick="increaseAmount(event, {{product.stock}})">+</button>
                     </div>
                     {{#if product.status}}
                     <button id="add-to-cart-btn" class="px-3 py-2 text-xs font-bold text-white uppercase bg-gray-800 rounded"
