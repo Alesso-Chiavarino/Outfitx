@@ -21,10 +21,10 @@
                 {{#if product.status}}
                 {{/if}}
                 {{#if product.stock}}
-                <p class="text-gray-500">{{product.stock}} unidades disponibles</p>
+                <p class="text-gray-500">{{product.stock}} Available units</p>
                 {{#if admin}}
                 <p class="product-owner">propietario: {{product.owner}}</p>
-                <button id="delete-btn" class="delete-btn" onclick="deleteItem(`{{product.id}}`)">Eliminar producto</button>
+                <button id="delete-btn" class="delete-btn" onclick="deleteItem(`{{product.id}}`)">Remove product</button>
                 {{else}}
                 <div class="mt-10">
                     <div class="item-counter-container">
@@ -34,12 +34,12 @@
                     </div>
                     {{#if product.status}}
                     <button id="add-to-cart-btn" class="px-3 py-2 text-xs font-bold text-white uppercase bg-gray-800 rounded"
-                        onclick="addToCart(event, `{{product.id}}`, `{{user.cart}}`)">Añadir al carrito</button>
+                        onclick="addToCart(event, `{{product.id}}`, `{{user.cart}}`)">Add to cart</button>
                     {{/if}}
                 </div>
                 {{/if}}
                 {{else}}
-                <p class="sold-out">Producto agotado</p>
+                <p class="text-red-500 font-bold">No stock</p>
                 {{/if}}
             </div>
         </div>

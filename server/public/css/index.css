@@ -17,14 +17,12 @@
     margin: 1rem auto;
     color: #d1d1d1;
     font-size: 2.7rem;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .banner-info_2{
     margin: 1rem auto;
     color: #d1d1d1;
     font-size: 2rem;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .banner-img{
@@ -93,107 +91,4 @@
     color: #fff;
     font-size: 1.3rem;
     font-weight: 200;
-}
-
-.product-item{
-    background-color: #101010;
-    padding: 0;
-    width: 14rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: all 300ms;
-    height: 20rem;
-    margin-top: 3rem;
-    color: #f0f0f0;
-    overflow: hidden;
-}
-
-.product-item:hover{
-    height: 23rem;
-    margin-bottom: -3rem;
-    box-shadow: 0 0 8px #000000;
-}
-
-.product-item:hover .item-description{
-    opacity: 1;
-}
-
-#item-title{
-    font-size: 1.1rem;
-    font-weight: 500;
-    min-height: 3rem;
-    margin: 1rem 0 0.5rem;
-    vertical-align: middle;
-}
-
-.item-description{
-    opacity: 0;
-    max-height: 3rem;
-    overflow: hidden;
-    font-size: 0.9rem;
-    transition: opacity 500ms;
-    margin: 1rem;
-    font-weight: 100;
-}
-
-.price-tag{
-    font-weight: 500;
-    margin-top: 1rem;
-    background: radial-gradient(#313131aa, #101010 50%);
-    width: 100%;
-    padding: 1.2rem;
-}
-
-.stock-tag{
-    font-size: 0.9rem;
-    color: #555;
-}
-
-.thumbnail-container{
-    width: 100%;
-    height: 10rem;
-    display: flex;
-    justify-content: center;
-}
-
-.thumbnail-container img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.7);
-}
-
-.product-item:hover .thumbnail-container img{
-    filter: brightness(1);
-}
-
-#no-image{
-    color: #555;
-}
-
-.see-cart-button{
-    display: block;
-    margin: 1rem auto;
-}
-
-.pagLink{
-    margin: auto 0;
-    color: #fff;
-}
-
-.pagLink.disabled{
-    color: #888;
-    cursor: not-allowed;
-}
-
-.pag-btn-container{
-    display: flex;
-    justify-content: center;
-    margin: 2rem 0;
-    gap: 3rem;
-    font-size: 1.1rem;
 }
