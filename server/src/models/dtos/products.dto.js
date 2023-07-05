@@ -3,7 +3,6 @@ export class AddProductDTO {
     constructor(payload, files, owner) {
 
         const { title, description, price, stock, category, _id } = payload
-//CAMBIARRR 
         this._id = _id
         this.title = title
         this.description = description
@@ -27,8 +26,8 @@ export class AddProductDTO {
     }
 }
 
-export class GetProductDTO{
-    constructor(payload){
+export class GetProductDTO {
+    constructor(payload) {
         this.id = payload._id
         this.title = payload.title
         this.description = payload.description

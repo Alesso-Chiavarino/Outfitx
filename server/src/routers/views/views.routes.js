@@ -44,16 +44,17 @@ router.get('/cart/:cid',
     ViewsController.cart
 )
 
-router.get('/users',
-    passportCall('jwt'),
-    roleMiddleware(['admin']),
-    ViewsController.users
-)
-
 router.get('/profile/:uid',
     passportCall('jwt'),
     roleMiddleware(['user', 'premium']),
     ViewsController.profile
+)
+
+
+router.get('/users',
+    passportCall('jwt'),
+    roleMiddleware(['admin']),
+    ViewsController.users
 )
 
 router.get('/newproduct',
@@ -62,12 +63,6 @@ router.get('/newproduct',
     roleMiddleware(['admin', 'premium']),
     ViewsController.newProduct
 )
-
-// router.get('/chat',
-//     authMiddleware,
-//     passportCall('jwt'),
-//     ViewsController.chat
-// )
 
 router.get('/ticket/:tid',
     authMiddleware,

@@ -8,7 +8,6 @@ const router = Router();
 router.get('/', CartsController.getCarts)
 router.get('/:id', CartsController.getCart)
 router.post('/', CartsController.createCart)
-// router.post('/:cid/product/:pid', passportCall('jwt'), roleMiddleware(['user', 'premium']), CartsController.addProduct)
 router.post('/:id/product/:pid', passportCall('jwt'), roleMiddleware(['user', 'premium']), CartsController.addToCart)
 router.put('/:cid', passportCall('jwt'), roleMiddleware(['admin']), CartsController.updateCart)
 router.put('/:cid/purchase', passportCall('jwt'), roleMiddleware(['user', 'premium']), CartsController.purchase)
