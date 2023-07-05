@@ -13,15 +13,6 @@ let transporter = nodemailer.createTransport({
     },
 })
 
-const html = `
-    <h1>Outfitx</h1>
-    <h3>Hello, {CLIENT NAME}</h3>
-    <p>Order confirmation</p>
-    <p>Thank you for your purchase</p>
-    <h3>Details</h3>
-    <p>Oder num: {NUM OF ORDER}</p>
-`
-
 export const sendMail = async (to, subject, html) => {
 
     const info = await transporter.sendMail({
@@ -35,5 +26,3 @@ export const sendMail = async (to, subject, html) => {
     console.log(info)
 
 }
-
-// sendMail('alessochiavarino@gmail.com', 'test', html)
