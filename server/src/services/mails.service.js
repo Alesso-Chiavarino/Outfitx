@@ -28,7 +28,7 @@ class MailsService {
         const html = `
             <div>
                 <h1>Account Deactivation Notice</h1>
-                <p>Your account deactivation has been requested.</p>
+                <p>I ${userName}, your account (${userEmail}) deactivation has been requested.</p>
                 <p>If you did not request this, please contact our support team immediately.</p>
                 <p>If you wish to proceed with deactivating your account, please note the following:</p>
                 <ul>
