@@ -1,9 +1,11 @@
 import { CartsService } from "../services/carts.service.js"
 import { successResponse, HTTP_STATUS } from "../utils/api.utils.js"
 import TicketsService from "../services/tickets.service.js"
+import { MercadoPagoService } from "../services/mercadopago.service.js"
 
 const cartsService = new CartsService()
 const ticketsService = new TicketsService()
+const mercadoPagoService = new MercadoPagoService()
 
 export class CartsController {
     static async getCarts(req, res, next) {
@@ -97,7 +99,7 @@ export class CartsController {
         }
     }
 
-    static async updateCart(req, res, next){
+    static async updateCart(req, res, next) {
         const { cid } = req.params
         const payload = req.body
         try {
@@ -124,9 +126,29 @@ export class CartsController {
         }
     }
 
-    static async purchase(req, res, next){
+    static async checkout(req, res, next) {
+        const { cid } = req.params
+
+        try {
+            const { products } = await cartsService.getCartById(cid)
+
+            if (!products.length) {
+                throw new Error('Cart is empty')
+            }
+
+            const uriPoint = await mercadoPagoService.checkout(products, cid)
+            const response = successResponse(uriPoint)
+            console.log(response)
+            res.status(HTTP_STATUS.OK).json(response)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    static async purchase(req, res, next) {
         const purchaser = req.user
         const { cid } = req.params
+
         try {
             const ticket = await ticketsService.createTicket(cid, purchaser)
             req.logger.info(`Successful purchase`)

@@ -74,4 +74,10 @@ router.get('/newpasswordform',
     ViewsController.passwordForm
 )
 
+router.get('/purchase-success/:cid',
+    authMiddleware,
+    passportCall('jwt'),
+    ViewsController.purchaseSuccess
+)
+
 export default router;

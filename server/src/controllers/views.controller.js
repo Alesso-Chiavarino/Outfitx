@@ -1,10 +1,7 @@
-import { getDaos } from '../models/daos/factory.js'
 import { CartsService } from '../services/carts.service.js'
 import { ProductsService } from '../services/products.service.js'
 import TicketsService from '../services/tickets.service.js'
 import { UsersService } from '../services/users.service.js'
-
-const { ticketsDao } = getDaos()
 
 const productsService = new ProductsService()
 const cartsService = new CartsService()
@@ -71,9 +68,8 @@ export class ViewsController {
                 cart = await cartsService.getCartById(user.cart)
             }
             const product = await productsService.getProductById(pid)
-            res.render('productDetail', {
+            res.render('Detail', {
                 title: product.title,
-                styles: 'detail.css',
                 product,
                 cart,
                 user,
@@ -92,7 +88,6 @@ export class ViewsController {
             const admin = user.role === 'admin'
             res.render('cart', {
                 title: "Cart",
-                styles: "cart.css",
                 user,
                 cart,
                 admin
@@ -110,7 +105,6 @@ export class ViewsController {
             const usersQuantity = usersList.length
             res.render('users', {
                 title: "Users",
-                styles: "users.css",
                 usersList,
                 usersQuantity,
                 user,
@@ -130,7 +124,6 @@ export class ViewsController {
             const userData = await usersService.getUserById(uid)
             res.render('profile', {
                 title: "Profile",
-                styles: "profile.css",
                 user,
                 userData
             })
@@ -144,8 +137,7 @@ export class ViewsController {
         try {
             const admin = user.role === 'admin'
             res.render('newProduct', {
-                title: "Create product",
-                styles: "newproduct.css",
+                title: "Create Product",
                 user,
                 admin
             })
@@ -163,7 +155,6 @@ export class ViewsController {
             const ticket = await ticketsService.getTicketById(tid)
             res.render('ticket', {
                 title: "Purchase Ticket",
-                styles: "ticket.css",
                 name,
                 ticket,
                 user
@@ -177,9 +168,22 @@ export class ViewsController {
         const { token } = req.query
         try {
             res.render('newPasswordForm', {
-                title: "Generate new password",
-                styles: "passwordform.css",
+                title: "Generate new Password",
                 token
+            })
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    static async purchaseSuccess (req, res, next) {
+
+        const { cid } = req.params
+
+        try {
+            res.render('purchaseSuccess', {
+                title: "Purchase Success",
+                cid
             })
         } catch (error) {
             next(error)

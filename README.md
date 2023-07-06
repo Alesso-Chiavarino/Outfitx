@@ -12,6 +12,31 @@ https://outfitx-production.up.railway.app/login => is working.
 - email: admin@coder.com
 - password: 123
 
+## TEST CARDS
+
+Put TEST-7302928272959470-070518-c255a0a5951e0f5fe50e5d753e0ea0e6-227952207 in the field "MERCADOPAGO_ACCESS_TOKEN_TEST" to test
+
+Use the following test cards to simulate a transaction:
+
+FOR ARGENTINA:
+VISA: 4509 9535 6623 3704 - CVV: 123 - DATE: 11/25
+titular: APRO - DNI: 12345678
+---------------------------------------------------
+FOR COLOMBIA:
+VISA: 4099 8333 6166 3634 - CVV: 123 - DATE: 11/25
+titular: APRO - DNI: 123456789
+--------------------------------------------------- 
+
+FOR PERU:
+VISA: 4009 1753 3280 6176 - CVV: 123 - DATE: 11/25
+titular: APRO - DNI: 123456789
+--------------------------------------------------- 
+
+FOR CHILE:
+VISA: 4168 8188 4444 7115 - CVV: 123 - DATE: 11/25
+titular: APRO - DNI: 123456789
+--------------------------------------------------- 
+
 ## Environment Variables
 
 PORT = 8080
@@ -30,6 +55,7 @@ ADMIN_PASSWORD = THE PASSWORD OF ADMIN #OBLIGATORY
 GITHUB_CLIENT_ID = CLIENT ID OF GITHUB #OBLIGATORY
 GITHUB_CLIENT_SECRET = CLIENT SECRET OF GITHUB #OBLIGATORY
 GITHUB_CALLBACK_URL = CALLBACK URL OF GITHUB #OBLIGATORY
+MERCADOPAGO_ACCESS_TOKEN_TEST = TEST ACCESS TOKEN OF MERCADOPAGO #OBLIGATORY
 
 ## Technologies Used
 
@@ -64,3 +90,5 @@ GITHUB_CALLBACK_URL = CALLBACK URL OF GITHUB #OBLIGATORY
 - twilio: Library for sending SMS and making phone calls.
 - uuid: Library for generating UUIDs.
 - winston: Logging library.
+- toastify: Library for displaying toast notifications.
+- mercadopago: Library for making payments with MercadoPago.

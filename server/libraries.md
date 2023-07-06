@@ -24,6 +24,7 @@ swagger-jsdoc ===> to create documentation
 swagger-ui-express ===> to add a route to see the documentation
 supertest ===> to test the api
 jsonwebtoken ===> 
+mercadopago ===> to make payments
 
 devDependencies {
     nodemon ===> to restard the server when a file changes
@@ -34,15 +35,3 @@ devDependencies {
 
 --- COMANDS ---
 artillery quick --count 40 --num 50 "http://localhost:8080/api/products" -o stadistics.json
-
-TWILIO CODIGO RE SECRETO = ===> _h7OkFPTHMnspDsSjkTJMHbatCnxD21Lz6OMEowE
-
-1- Represente tanto en signo-magnitud como en complemento a dos, con 16 bits, los siguientes números decimales: +512; -29. 
-
-2- Represente en decimal los siguientes valores en complemento a dos: 1101011; 0101101 
-
-3- Considere los números representados en complemento a dos con ocho bits y realice los siguientes cálculos: (a) 6 + 13 (b) -6 + 13 (c) 6  - 13 (d) -6  -13 
-
-4- Divida 145 entre 13 en notación binaria de complemento a dos utilizando palabras de 12 bits 
-
-5- Use el algoritmo de Booth para multiplicar 23 (multiplicando) por 29 (multiplicador), donde cada número está representado con 7 bits. 

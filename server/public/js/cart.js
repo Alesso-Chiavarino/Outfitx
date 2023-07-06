@@ -32,28 +32,9 @@ const clearCart = async (cid) => {
     window.location.href = window.location.href
 }
 
-const seeTicketButton = (tid) => {
-    console.log('funcino')
-    const ticketButton = document.createElement('button')
-    ticketButton.innerText = 'Ver comprobante'
-    ticketButton.style.cursor = 'pointer'
-    ticketButton.classList.add('see-ticket', 'waves-effect', 'waves-light', 'btn-small', 'indigo', 'darken-4')
-    ticketButton.addEventListener('click', () => {
-        window.location.pathname = `/ticket/${tid}`
-    })
-    cartBody.appendChild(ticketButton)
-}
-
-const showThanks = () => {
-    const thanksTag = document.createElement('p')
-    thanksTag.innerText = 'Gracias por elegirnos. ¡Disfruta tu compra!'
-    thanksTag.style.color = '#ccc'
-    cartBody.appendChild(thanksTag)
-}
-
 const purchase = async (cid) => {
     await fetch(`/api/carts/${cid}/purchase`, {
-        method: 'put'
+        method: 'post'
     })
         .then(response => {
             if (!response.ok) {
@@ -74,10 +55,8 @@ const purchase = async (cid) => {
             return response.json()
         })
         .then(response => {
-            const ticketId = response.data.newTicket._id
-            window.location.href = `/ticket/${ticketId}`
+            window.location.href = response.data
         })
     cartList.remove()
-    showThanks()
 }
 

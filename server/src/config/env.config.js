@@ -13,6 +13,7 @@ const ENV = {
     SESSION_KEY: process.env.SESSION_KEY || '',
     ADMIN_NAME: process.env.ADMIN_NAME || '',
     ADMIN_PASSWORD: process.env.ADMIN_PASSWORD || '',
+    MERCADOPAGO_ACCESS_TOKEN_TEST: process.env.MERCADOPAGO_ACCESS_TOKEN_TEST || '',
     GOOGLE: {
         APLICATION_PASSWORD: process.env.GOOGLE_APLICATION_PASSWORD || '',
         EMAIL: process.env.GOOGLE_EMAIL || '',
