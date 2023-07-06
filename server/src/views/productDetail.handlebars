@@ -4,12 +4,12 @@
             <img src="../../statics/products/{{product.thumbnails.[0].originalName}}" alt={{product.title}}
                 class="product-img">
         </div>
-        <div class="border-l-2 border-black w-2/4 p-4">
+        <div class="border-l-2 border-black w-2/4 p-10">
             <h1 class="text-2xl font-bold text-gray-900">
                 {{product.title}}
             </h1>
             <hr>
-            <p class="mt-2 text-sm text-gray-600">
+            <p class="mt-2 py-5 text-sm text-gray-600">
                 {{product.description}}
             </p>
             <hr>
@@ -25,14 +25,14 @@
                 <p class="font-semibold">Owner: {{product.owner}}</p>
                 <button class="px-4 py-2 bg-red-500 rounded-md w-1/4 text-white hover:bg-red-700" onclick="deleteItem(`{{product.id}}`)">Remove product</button>
                 {{else}}
-                <div class="mt-10">
-                    <div class="item-counter-container">
-                        <button onclick="decreaseAmount(event, {{product.stock}})">-</button>
-                        <p class="counter">1</p>
-                        <button onclick="increaseAmount(event, {{product.stock}})">+</button>
+                <div>
+                    <div class="flex gap-5 my-5 items-center text-white">
+                        <button class="bg-gray-800 hover:bg-gray-500 px-2 rounded-md" onclick="decreaseAmount(event, {{product.stock}})">-</button>
+                        <p class="text-black font-semibold">1</p>
+                        <button class="bg-gray-800 hover:bg-gray-500 px-2 rounded-md" onclick="increaseAmount(event, {{product.stock}})">+</button>
                     </div>
                     {{#if product.status}}
-                    <button id="add-to-cart-btn" class="px-3 py-2 text-xs font-bold text-white uppercase bg-gray-800 rounded"
+                    <button id="add-to-cart-btn" class="px-3 py-2 text-xs font-bold text-white uppercase bg-gray-800 hover:bg-gray-500 rounded"
                         onclick="addToCart(event, `{{product.id}}`, `{{user.cart}}`)">Add to cart</button>
                     {{/if}}
                 </div>

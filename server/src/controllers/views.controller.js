@@ -12,21 +12,21 @@ export class ViewsController {
 
     static async register(req, res, next) {
         res.render('register', {
-            title: 'Sign Up',
+            title: 'Outfitx | Sign Up',
             styles: 'register.css'
         })
     }
 
     static async login(req, res, next) {
         res.render('login', {
-            title: 'Login',
+            title: 'Outfitx | Login',
             styles: 'login.css'
         })
     }
 
     static async recover(req, res, next) {
         res.render('recover', {
-            title: 'Recover your password',
+            title: 'Outfitx | Recover your password',
             styles: 'recover.css'
         })
     }
@@ -68,8 +68,8 @@ export class ViewsController {
                 cart = await cartsService.getCartById(user.cart)
             }
             const product = await productsService.getProductById(pid)
-            res.render('Detail', {
-                title: product.title,
+            res.render('productDetail', {
+                title: 'Outfitx | ' + product.title,
                 product,
                 cart,
                 user,
@@ -83,13 +83,20 @@ export class ViewsController {
     static async cart(req, res, next) {
         const { cid } = req.params
         const { user } = req
+
         try {
             const cart = await cartsService.getCartById(cid)
             const admin = user.role === 'admin'
+
+            const subtotal = cart.products.map(prod => {
+                return prod.product.price * prod.quantity
+            })
+
             res.render('cart', {
-                title: "Cart",
+                title: "Outfitx | Cart",
                 user,
                 cart,
+                subtotal,
                 admin
             })
         } catch (error) {
@@ -104,7 +111,7 @@ export class ViewsController {
             const usersList = await usersService.getUsers()
             const usersQuantity = usersList.length
             res.render('users', {
-                title: "Users",
+                title: "Outfitx | Users",
                 usersList,
                 usersQuantity,
                 user,
@@ -123,7 +130,7 @@ export class ViewsController {
         try {
             const userData = await usersService.getUserById(uid)
             res.render('profile', {
-                title: "Profile",
+                title: "Outfitx | Profile",
                 user,
                 userData
             })
@@ -137,7 +144,7 @@ export class ViewsController {
         try {
             const admin = user.role === 'admin'
             res.render('newProduct', {
-                title: "Create Product",
+                title: "Outfitx | Create Product",
                 user,
                 admin
             })
@@ -154,7 +161,7 @@ export class ViewsController {
         try {
             const ticket = await ticketsService.getTicketById(tid)
             res.render('ticket', {
-                title: "Purchase Ticket",
+                title: "Outfitx | Purchase Ticket",
                 name,
                 ticket,
                 user
@@ -168,7 +175,7 @@ export class ViewsController {
         const { token } = req.query
         try {
             res.render('newPasswordForm', {
-                title: "Generate new Password",
+                title: "Outfitx | Generate new Password",
                 token
             })
         } catch (error) {
@@ -176,13 +183,13 @@ export class ViewsController {
         }
     }
 
-    static async purchaseSuccess (req, res, next) {
+    static async purchaseSuccess(req, res, next) {
 
         const { cid } = req.params
 
         try {
             res.render('purchaseSuccess', {
-                title: "Purchase Success",
+                title: "Outfitx | Purchase Success",
                 cid
             })
         } catch (error) {

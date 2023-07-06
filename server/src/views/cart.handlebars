@@ -57,13 +57,14 @@
                                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                         <button onclick="removeProduct('{{../cart._id}}','{{product._id}}')"
                                             class="text-red-500 hover:text-red-800">
-                                            X
+                                            <i class="fa-solid fa-xmark"></i>
                                         </button>
                                     </td>
                                 </tr>
                                 {{/each}}
                             </tbody>
                         </table>
+                        <span class="font-bold block ml-5 py-5">Total: ${{subtotal}}</span>
                     </div>
                 </div>
             </div>
@@ -71,7 +72,7 @@
                 <button onclick="clearCart('{{cart._id}}')"
                     class="px-4 py-2 bg-red-500 rounded-md hover:bg-red-400 text-white">Clear
                     Cart</button>
-                <button onclick="purchase('{{cart._id}}')"
+                <button onclick="checkout('{{cart._id}}')"
                     class="px-4 py-2 bg-green-500 rounded-md hover:bg-green-400 text-white">Purchase</button>
             </div>
             {{else}}

@@ -16,7 +16,7 @@ const removeProduct = async (cid, pid) => {
             position: "right", // `left`, `center` or `right`
             stopOnFocus: true, // Prevents dismissing of toast on hover
             style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                background: "linear-gradient(to right, #202020, #000)",
             },
             onClick: () => window.location.reload()
         }).showToast();
@@ -32,14 +32,14 @@ const clearCart = async (cid) => {
     window.location.href = window.location.href
 }
 
-const purchase = async (cid) => {
+const checkout = async (cid) => {
     await fetch(`/api/carts/${cid}/purchase`, {
         method: 'post'
     })
         .then(response => {
             if (!response.ok) {
                 return Toastify({
-                    text: `Thanks for your purchase!`,
+                    text: `Not possible to checkout`,
                     duration: 3000,
                     destination: `/products`,
                     newWindow: false,

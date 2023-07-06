@@ -2,40 +2,54 @@
 
 Outfitx is a backend project built with Express.js that provides an API for managing and exploring outfits. This application allows users to create, update, delete, and search for custom outfit sets.
 
+If you have any questions or suggestions, please contact me at If you have any questions or suggestions, please contact me at [mailto:alessochiavarino@gmail.com](gmail.com/alessochiavarino) 
+
 ## Deployment
 
-https://outfitx.vercel.app/login => is deprecated.
-https://outfitx-production.up.railway.app/login => is working.
+RAILWAY ==> https://outfitx-production.up.railway.app
+RENDER ==> https://outfitx.onrender.com
+
+(The main deployment is on Railway)
 
 ## ADMIN USER
+
+With this following user you can access to the admin panel and manage the app
 
 - email: admin@coder.com
 - password: 123
 
-## TEST CARDS
+## TEST CARDS FOR MERCADOPAGO
 
-Put TEST-7302928272959470-070518-c255a0a5951e0f5fe50e5d753e0ea0e6-227952207 in the field "MERCADOPAGO_ACCESS_TOKEN_TEST" to test
+Put the following token in the field "MERCADOPAGO_ACCESS_TOKEN_TEST" in the .env file to test the payment system:
+
+TEST-7302928272959470-070518-c255a0a5951e0f5fe50e5d753e0ea0e6-227952207
 
 Use the following test cards to simulate a transaction:
 
-FOR ARGENTINA:
+- FOR ARGENTINA:
 VISA: 4509 9535 6623 3704 - CVV: 123 - DATE: 11/25
-titular: APRO - DNI: 12345678
+APPROVED SIMULATION => titular: APRO - Document: 12345678
+REJECTED SIMULATION => titular: OTHE - Document: 12345678
 ---------------------------------------------------
-FOR COLOMBIA:
+- FOR COLOMBIA:
 VISA: 4099 8333 6166 3634 - CVV: 123 - DATE: 11/25
-titular: APRO - DNI: 123456789
+APPROVED SIMULATION => titular: APRO - Document: 123456789
+REJECTED SIMULATION => titular: OTHE - Document: 123456789
 --------------------------------------------------- 
 
-FOR PERU:
+- FOR PERU:
 VISA: 4009 1753 3280 6176 - CVV: 123 - DATE: 11/25
-titular: APRO - DNI: 123456789
+APPROVED SIMULATION => titular: APRO - Document: 123456789
+REJECTED SIMULATION => titular: OTHE - Document: 123456789
 --------------------------------------------------- 
 
-FOR CHILE:
+- FOR CHILE:
 VISA: 4168 8188 4444 7115 - CVV: 123 - DATE: 11/25
-titular: APRO - DNI: 123456789
+APPROVED SIMULATION => titular: APRO - Document: 123456789
+REJECTED SIMULATION => titular: OTHE - Document: 123456789
 --------------------------------------------------- 
+
+For more information visit https://www.mercadopago.com.ar/developers/panel/app/7302928272959470/test-cards (need an account)
 
 ## Environment Variables
 
@@ -55,7 +69,7 @@ ADMIN_PASSWORD = THE PASSWORD OF ADMIN #OBLIGATORY
 GITHUB_CLIENT_ID = CLIENT ID OF GITHUB #OBLIGATORY
 GITHUB_CLIENT_SECRET = CLIENT SECRET OF GITHUB #OBLIGATORY
 GITHUB_CALLBACK_URL = CALLBACK URL OF GITHUB #OBLIGATORY
-MERCADOPAGO_ACCESS_TOKEN_TEST = TEST ACCESS TOKEN OF MERCADOPAGO #OBLIGATORY
+MERCADOPAGO_ACCESS_TOKEN_TEST = TEST-7302928272959470-070518-c255a0a5951e0f5fe50e5d753e0ea0e6-227952207 #OBLIGATORY (use this to test)
 
 ## Technologies Used
 

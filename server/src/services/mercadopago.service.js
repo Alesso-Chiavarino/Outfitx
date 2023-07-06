@@ -14,21 +14,20 @@ export class MercadoPagoService {
                 };
             }),
             back_urls: {
-                // success: `outfitx-production.up.railway.app/purchase-success/${cid}`,
-                success: `http://localhost:8080/purchase-success/${cid}`,
-                failure: 'outfitx-production.up.railway.app',
-                pending: '',
+                success: `https://outfitx.onrender.com/purchase-success/${cid}`,
+                failure: 'https://outfitx.onrender.com',
+                pending: 'https://outfitx.onrender.com',
             },
             auto_return: 'approved',
             binary_mode: true,
         };
 
-        const point = mercadopago.preferences.create(preference)
+        const purchasePoint = mercadopago.preferences.create(preference)
             .then((response) => {
                 return response.body.init_point;
             })
             .catch(error => console.log(error));
 
-        return point
+        return purchasePoint
     }
 }

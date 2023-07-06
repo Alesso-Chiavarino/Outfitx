@@ -2,10 +2,12 @@ import { CartsService } from "../services/carts.service.js"
 import { successResponse, HTTP_STATUS } from "../utils/api.utils.js"
 import TicketsService from "../services/tickets.service.js"
 import { MercadoPagoService } from "../services/mercadopago.service.js"
+import MailsService from "../services/mails.service.js"
 
 const cartsService = new CartsService()
 const ticketsService = new TicketsService()
 const mercadoPagoService = new MercadoPagoService()
+const mailsService = new MailsService()
 
 export class CartsController {
     static async getCarts(req, res, next) {
@@ -60,18 +62,6 @@ export class CartsController {
     }
 
     static async addToCart(req, res, next) {
-        // const { id, pid } = req.params
-        // const amount = +req.body?.amount || 1
-
-        // try {
-        //     const updatedCart = await cartsService.addToCart(id, pid, amount)
-        //     const response = successResponse(updatedCart)
-        //     req.logger.info('Product added to cart successfully')
-        //     res.status(HTTP_STATUS.OK).json(response)
-
-        // } catch (err) {
-        //     next(err)
-        // }
         const { id, pid } = req.params
         const { user } = req
         try {
@@ -151,6 +141,12 @@ export class CartsController {
 
         try {
             const ticket = await ticketsService.createTicket(cid, purchaser)
+
+            if (!ticket) {
+                throw new Error('Ticket could not be created')
+            }
+
+            await mailsService.sendOrderConfirmation(purchaser, ticket)
             req.logger.info(`Successful purchase`)
             const response = successResponse(ticket)
             res.status(HTTP_STATUS.OK).json(response)

@@ -81,7 +81,7 @@ class TicketsService {
         }
         const ticketPayloadDTO = new AddTicketDTO(purchaser, totalPrice, ticketProducts)
         const newTicket = await ticketsDao.createTicket(ticketPayloadDTO)
-        return { newTicket, abortedProducts }
+        return { newTicket, abortedProducts, cart }
     }
 
     async updateTicket(tid, payload) {

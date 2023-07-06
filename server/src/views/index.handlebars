@@ -1,15 +1,16 @@
 <div class="banner-container">
-    <h2 class="banner-info_1">Outfitx</h2>
-    <h3 class="banner-info_2">The ultimate destination for fashion-forward clothing.</h3>
+    <h2 class="text-5xl font-extrabold m-5 text-[#d4d4d4]">Outfitx</h2>
+    <h3 class="text-3xl text-[#d4d4d4]">The ultimate destination for fashion-forward clothing.</h3>
 </div>
-<div class="index-container mx-auto items-center flex flex-col container my-10">
+<div class="mx-auto items-center flex flex-col container my-10">
 
     <h1 class="font-bold text-3xl mb-10">Our Products</h1>
-    
+
     <section class="flex gap-10 w-full">
         <div class="w-1/4 bg-gray-100 rounded-md p-5 h-fit">
             <h3 class="font-bold mb-2">Categories</h3>
-            <div class="flex gap-5 flex-col   ">
+            <hr>
+            <div class="flex gap-5 flex-col mt-5">
                 <button class="border-transparent border-b-2 hover:border-[#3d3d3d]"
                     onclick="filterProducts(null)">All</button>
                 <button class="border-transparent border-b-2 hover:border-[#3d3d3d]"
@@ -20,39 +21,36 @@
                     onclick="filterProducts('calzados')">Shoes</button>
             </div>
         </div>
-        <div class="flex flex-col w-max">
-            <h3 class="font-semibold">({{products.totalDocs}}) results</h3>
+        <div class="flex flex-col w-full">
+            <h3 class="font-semibold mb-10">({{products.totalDocs}}) results</h3>
             <div class="grid grid-cols-3 gap-5">
                 {{#each products.docs}}
 
-                <article class="flex items-center justify-center cursor-pointer" id={{id}}
+                <article class="flex items-center justify-center cursor-pointer hover:scale-105 transition-all" id={{id}}
                     onclick="prodDetail(`{{id}}`)">
-                    <div class="w-full">
-                        <div class="flex flex-col justify-center p-10 bg-white rounded-lg shadow-2xl card">
-                            <div class="prod-title">
-                                <p class="text-2xl font-bold text-gray-900 uppercase">
-                                    {{title}}
-                                </p>
-                                <p class="text-sm text-gray-400 uppercase">
+                    <div class="w-full h-fit">
+                        <div class="flex flex-col justify-center p-10 bg-white rounded-lg shadow-2xl">
+                            <p class="text-2xl font-bold text-gray-900 uppercase">
+                                {{title}}
+                            </p>
+                            <hr>
+                            <div class=" w-200 overflow-hidden whitespace-nowrap overflow-ellipsis">
+                                <p class="text-sm text-gray-400 my-5 uppercase">
                                     {{description}}
                                 </p>
                             </div>
-                            <div class="prod-img">
+                            <div>
                                 <img src="../../statics/products/{{thumbnails.[0].originalName}}" alt="{{title}}"
-                                    class="object-cover object-center h-[200px]" />
+                                    class="object-cover object-center h-[200px] w-[200px]" />
                             </div>
-                            <div class="grid gap-10 prod-info">
-                                <div>
-                                </div>
-                                <div class="flex flex-col items-center justify-between text-gray-900 md:flex-row">
-                                    <p class="text-xl font-bold">
-                                        ${{price}}
-                                    </p>
-                                    <button
-                                        class="px-2 py-2 uppercase transition duration-200 ease-in border-2 border-gray-900 rounded-full hover:bg-gray-800 hover:text-white focus:outline-none">
-                                        See more
-                                    </button>
-                                </div>
+                            <div class="flex flex-col items-center justify-between text-gray-900 md:flex-row">
+                                <p class="text-xl font-bold">
+                                    ${{price}}
+                                </p>
+                                <button
+                                    class="px-2 py-2 uppercase transition duration-200 ease-in border-2 border-gray-900 rounded-full hover:bg-gray-800 hover:text-white focus:outline-none">
+                                    See more
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -61,16 +59,16 @@
             </div>
         </div>
     </section>
-    <div class="pag-btn-container">
+    <div class="flex gap-5 items-center my-5">
         {{#if products.hasPrevPage}}
-        <a href={{products.prevLink}} class="pagLink">Prev</a>
+            <a href={{products.prevLink}} class="cursor-pointer"><i class="fa-solid fa-arrow-left"></i></a>
         {{else}}
-        <p class="pagLink disabled" disabled>Prev</p>
+            <p class="cursor-pointer text-black/50"><i class="fa-solid fa-arrow-left"></i></p>
         {{/if}}
         {{#if products.hasNextPage}}
-        <a href={{products.nextLink}} class="pagLink">Next</a>
+            <a href={{products.nextLink}} class="cursor-pointer"><i class="fa-solid fa-arrow-right"></i></a>
         {{else}}
-        <p class="pagLink disabled" disabled>Next</p>
+            <p class="cursor-pointer text-black/50"><i class="fa-solid fa-arrow-right"></i></p>
         {{/if}}
     </div>
 </div>

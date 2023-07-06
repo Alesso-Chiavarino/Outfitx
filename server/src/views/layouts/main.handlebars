@@ -12,46 +12,45 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/statics/icon/favicon-16x16.png">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/7d65b7aff4.js" crossorigin="anonymous"></script>
     <title>{{title}}</title>
 </head>
 
 <body>
-    <nav>
+    <nav class="border-b-2 border-[#000]/80">
         <div class="container h-fit flex justify-around p-5">
             <a href="/" class="flex gap-5 items-center">
-                {{!-- <img src="/statics/assets/icon.png" alt="mate icon" class="h-12"> --}}
                 <h2 class="text-2xl font-extrabold">Outfitx</h2>
             </a>
-            <ul id="nav-mobile" class="flex gap-5 items-center">
-                <li><a href="/products" class="font-semibold">Home</a></li>
-                {{!-- <li><a href="/chat">Chat</a></li> --}}
-
+            <ul class="flex gap-5 items-center">
+                <li class="hover:text-black text-[#303030]"><a href="/products" class="font-semibold">Home</a></li>
                 {{#if user}}
                 {{#if admin}}
-                <li>
+                <li class="hover:text-black text-[#303030]">
                     <a href="/users" class="font-semibold">Users List</a>
                 </li>
                 {{else}}
                 <li>
                     <a href="/profile/{{user.id}}" class="font-semibold">Account</a>
-                </li>
+                </li class="hover:text-black text-[#303030]">
                 {{/if}}
                 {{#if premium}}
-                <li>
+                <li class="hover:text-black text-[#303030]">
                     <a href="/newproduct" class="font-semibold">New product</a>
                 </li>
                 {{/if}}
                 {{#if admin}}
-                <li>
+                <li class="hover:text-black text-[#303030]">
                     <a href="/newproduct" class="font-semibold">New product</a>
                 </li>
                 {{/if}}
                 {{#if cart.products.length}}
-                <li>
+                <li class="hover:text-black text-[#303030]">
                     <a href="/cart/{{user.cart}}" class="font-semibold">Cart ({{cart.products.length}})</a>
                 </li>
                 {{/if}}
-                <li>
+                <li class="flex items-center gap-1 hover:text-black text-[#303030]">
+                    <i class="fa-solid fa-right-from-bracket"></i>
                     <button id="logout-btn" class="font-semibold">Log out</button>
                 </li>
                 {{/if}}

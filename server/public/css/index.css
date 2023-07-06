@@ -1,9 +1,5 @@
-.index-container{
-    padding: 0 10%;
-}
-
 .banner-container{
-    height: 25rem;
+    height: 400px;
     background: linear-gradient(0deg, #1c1f1aff, #1c1f1aaa 80%, #1c1f1a33),url('/statics/img/banner.webp');
     background-position: center;
     background-size: cover;
@@ -11,84 +7,4 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-.banner-info_1{
-    margin: 1rem auto;
-    color: #d1d1d1;
-    font-size: 2.7rem;
-}
-
-.banner-info_2{
-    margin: 1rem auto;
-    color: #d1d1d1;
-    font-size: 2rem;
-}
-
-.banner-img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
-
-.main-title{
-    text-align: center;
-    font-size: 3rem;
-}
-
-.filter-container{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 4rem 0;
-    margin: 10rem 0;
-}
-
-.filter-btn{
-    font-size: 1.8rem;
-    font-weight: 500;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border: none;
-    padding: 0.5rem;
-    border-radius: 0.2rem;
-    cursor: pointer;
-    color: #fff;
-    text-shadow: 0 0 4px #000;
-    height: 10rem;
-    width: 20rem;
-}
-
-.filter-btn.todo:hover, .filter-btn.mates:hover, .filter-btn.termos:hover, .filter-btn.bombillas:hover{
-    background-size: 110%;
-}
-
-.filter-btn.todo{
-    background:linear-gradient(0deg, #000000aa, #5a480b77), url('/statics/assets/todo-background.jpg');
-    background-size: cover;
-    background-position: center;
-}
-
-.filter-btn.mates{
-    background:linear-gradient(0deg, #000000aa, #17610d77), url('/statics/assets/mates-background.jpg');
-    background-size: cover;
-    background-position: center;
-}
-
-.filter-btn.termos{
-    background:linear-gradient(0deg, #000000aa, #2d0d6177), url('/statics/assets/termos-background.jpg');
-    background-size: cover;
-    background-position: center;
-}
-
-.filter-btn.bombillas{
-    background:linear-gradient(0deg, #000000aa, #610d1877), url('/statics/assets/bombillas-background.jpg');
-    background-size: cover;
-    background-position: center;
-}
-
-.amount-tag{
-    text-align: center;
-    color: #fff;
-    font-size: 1.3rem;
-    font-weight: 200;
 }
