@@ -88,9 +88,7 @@ export class ViewsController {
             const cart = await cartsService.getCartById(cid)
             const admin = user.role === 'admin'
 
-            const subtotal = cart.products.map(prod => {
-                return prod.product.price * prod.quantity
-            })
+            const subtotal = cart.products.reduce((acc, prod) => acc + (prod.product.price * prod.quantity), 0);
 
             res.render('cart', {
                 title: "Outfitx | Cart",
