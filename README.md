@@ -2,7 +2,7 @@
 
 Outfitx is a backend project built with Express.js that provides an API for managing and exploring outfits. This application allows users to create, update, delete, and search for custom outfit sets.
 
-If you have any questions or suggestions, please contact me at If you have any questions or suggestions, please contact me at [mailto:alessochiavarino@gmail.com](gmail.com/alessochiavarino) 
+If you have any questions or suggestions, please contact me at [gmail.com/alessochiavarino](mailto:alessochiavarino@gmail.com) 
 
 ## Deployment
 
